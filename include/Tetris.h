@@ -5,7 +5,6 @@ namespace Tetris {
 	struct Point {
 		int x,y;
 	};
-
 	class Board {
 
 	public:
