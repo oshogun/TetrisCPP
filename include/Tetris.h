@@ -9,7 +9,9 @@ namespace Tetris {
 
 	public:
 		Board(int M, int N);
-		std::vector<std::vector<int>> getField();
+		std::vector<std::vector<int>> & getField();
+		int getLines();
+		int getCollumns();
 
 	private:
 		int M, N;
@@ -18,11 +20,13 @@ namespace Tetris {
 
 	class Piece {
 	public:
-		Piece(int type);
+		Piece(int type, int color);
 		std::vector<int> getFigure();
+		int getColor();
 	private:
 		int type;
-		const std::vector<std::vector<int>> figures = 
+		int color;
+		std::vector<std::vector<int>> figures = 
 		{
 			{1,3,5,7}, // I
 			{2,4,5,7}, // Z
@@ -32,5 +36,6 @@ namespace Tetris {
 			{3,5,7,6}, // J
 			{2,3,4,5}, // O
 		};
+
 	};	
 }

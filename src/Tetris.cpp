@@ -14,9 +14,31 @@ namespace Tetris {
 		}
 	}
 
-	std::vector<std::vector<int>> Board::getField() 
+	std::vector<std::vector<int>> & Board::getField() 
 	{
 		return field;
 	}
 	
+	int Board::getLines()
+	{
+		return M;
+	}
+	int Board::getCollumns()
+	{
+		return N;
+	}
+
+	////////////////////////////////////////////////////
+
+	Piece::Piece(int _type, int _color):type(_type), color(_color){}
+
+	std::vector<int> Piece::getFigure()
+	{
+		return figures[type];
+	}
+
+	int Piece::getColor()
+	{
+		return color;
+	}
 }
