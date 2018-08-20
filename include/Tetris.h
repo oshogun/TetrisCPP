@@ -23,6 +23,7 @@ namespace Tetris {
 		Piece(int type, int color);
 		std::vector<int> getFigure();
 		int getColor();
+		int getType();
 	private:
 		int type;
 		int color;

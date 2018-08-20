@@ -13,7 +13,7 @@ public:
 private:
 	// basic game loop methods
 	void processEvents();
-	void update(sf::Time & delta);
+	void update();
 	void render();
 
 	// tetris-logic related methods
@@ -21,7 +21,7 @@ private:
 
 	void move();
 	void rotatePiece();
-	void tick(sf::Time & delta);
+	void tick();
 	void checkLines();
 
 private:
@@ -33,7 +33,8 @@ private:
 	std::vector<Tetris::Point>a, b;
 
 	sf::RenderWindow window;
-	sf::Texture background, frame, tileset;
+	sf::Texture background_t, frame_t, tileset_t;
+	sf::Sprite background, frame;
 
 };
 

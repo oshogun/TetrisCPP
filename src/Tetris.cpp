@@ -37,6 +37,11 @@ namespace Tetris {
 		return figures[type];
 	}
 
+	int Piece::getType() 
+	{
+		return type;
+	}
+
 	int Piece::getColor()
 	{
 		return color;
