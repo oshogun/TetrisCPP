@@ -1,24 +1,36 @@
 #include "Game.h"
 
-Game::Game():board(20, 10),
-			 a(4), b(4),
-			 rotate(false),
-			 dx(0), dy(0),
-			 timer(0.f), delay(0.8f),
-			 currentPiece(1, 1),
-			 window(sf::VideoMode(320,480), "Tetris da KURISUTINA") 
-			 {
-			 	background_t.loadFromFile("images/background.png");
-			 	tileset_t.loadFromFile("images/tiles.png");
-			 	frame_t.loadFromFile("images/frame.png");
-			 	background = sf::Sprite(background_t);
-			 	frame = sf::Sprite(frame_t);
-			 	for (int i = 0; i < 4; i++)
-				{
-					a[i].x = currentPiece.getFigure()[i] % 2;
-					a[i].y = currentPiece.getFigure()[i] / 2;
-				}
-			 }
+Game::Game():
+	board(20, 10),	
+	a(4), b(4),
+	rotate(false),
+	dx(0), dy(0),
+	timer(0.f), delay(0.8f),
+	currentPiece(1, 1),
+	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Titlebar) 
+	{
+		if (!bgm.openFromFile("music/elpsykongroo.wav")) {
+			throw std::runtime_error("Failed to load music/elpsykongroo.wav");
+		}
+		if (!pew_buffer.loadFromFile("soundfx/beep-02.wav")) {
+			throw std::runtime_error("Failed to load soundfx/beep-02.wav");
+		}
+		bgm.setLoop(true);
+		bgm.setVolume(25);
+		bgm.play();
+		pew.setBuffer(pew_buffer);
+		pew.setVolume(50);
+		background_t.loadFromFile("images/background.png");
+		tileset_t.loadFromFile("images/tiles.png");
+		frame_t.loadFromFile("images/frame.png");
+		background = sf::Sprite(background_t);
+		frame = sf::Sprite(frame_t);
+		for (int i = 0; i < 4; i++)
+		{
+			a[i].x = currentPiece.getFigure()[i] % 2;
+			a[i].y = currentPiece.getFigure()[i] / 2;
+		}
+	}
 
 void Game::run()
 {
@@ -47,6 +59,7 @@ void Game::processEvents()
 			window.close();
 		}
 		if (event.type == sf::Event::KeyPressed) {
+			pew.play();
 			if(event.key.code == sf::Keyboard::Up)
 				rotate = true;
 			else if (event.key.code == sf::Keyboard::Left)
@@ -55,7 +68,7 @@ void Game::processEvents()
 				dx = 1;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) 
-			delay = 0.03;
+			delay = 0.01;
 	}
 }
 
@@ -132,7 +145,9 @@ bool Game::check()
 	int N = board.getCollumns();
 	for (int i=0;i<4;i++)
 	  if (a[i].x<0 || a[i].x>=N || a[i].y>=M) return 0;
-      else if (field[a[i].y][a[i].x]) return 0;
+      else if (field[a[i].y][a[i].x]) { 
+      	  return 0;
+      }
 
    return 1;
 }
@@ -150,11 +165,13 @@ void Game::checkLines()
 			if (field[i][j])
 				count++;
 			board.getField()[k][j] = board.getField()[i][j];
+			
 		}
-		if (count < N)
-			k--;
+		if (count < N) {
+			k--;			
+		}
 	}
-	
+
 }
 void Game::render()
 {

@@ -2,8 +2,10 @@
 
 #include "Tetris.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <ctime>
 #include <cstdlib>
+#include <stdexcept>
 
 class Game {
 public:
@@ -35,6 +37,8 @@ private:
 	sf::RenderWindow window;
 	sf::Texture background_t, frame_t, tileset_t;
 	sf::Sprite background, frame;
-
+	sf::Music bgm;
+	sf::SoundBuffer pew_buffer;
+	sf::Sound pew;
 };
 
