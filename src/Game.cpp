@@ -7,7 +7,7 @@ Game::Game():
 	dx(0), dy(0),
 	timer(0.f), delay(0.8f),
 	currentPiece(1, 1),
-	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Titlebar) 
+	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Close) 
 	{
 		if (!bgm.openFromFile("music/elpsykongroo.wav")) {
 			throw std::runtime_error("Failed to load music/elpsykongroo.wav");
@@ -25,6 +25,9 @@ Game::Game():
 		frame_t.loadFromFile("images/frame.png");
 		background = sf::Sprite(background_t);
 		frame = sf::Sprite(frame_t);
+		std::srand(time(NULL));
+
+		currentPiece = Tetris::Piece(std::rand() % 7, std::rand() % 7 + 1);
 		for (int i = 0; i < 4; i++)
 		{
 			a[i].x = currentPiece.getFigure()[i] % 2;
@@ -34,7 +37,7 @@ Game::Game():
 
 void Game::run()
 {
-	srand(time(NULL));
+	
 	sf::Clock clock;	
 	while(window.isOpen()) {
 		float time = clock.getElapsedTime().asSeconds();
