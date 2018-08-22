@@ -4,6 +4,7 @@
 
 int main()
 {
+	std::srand(time(NULL));
 	Game game;
 	game.run();
 }

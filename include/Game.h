@@ -29,6 +29,14 @@ private:
 	void tick();
 	void checkLines();
 	void checkScores();
+	void processText();
+
+	// literally all the shit the constructor calls
+	void loadAssets();
+	void setupMusic();
+	void setupSounds();
+	void setupImages();
+	void generatePiece();
 
 private:
 	Tetris::Piece currentPiece;
@@ -49,5 +57,6 @@ private:
 	sf::Sound pew;
 	sf::Sound bloop;
 	sf::Font opensans_bold;
+	sf::Text scoreboard, paused_text;
 };
 

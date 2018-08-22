@@ -11,39 +11,69 @@ Game::Game():
 	paused(false),
 	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Close) 
 	{	
-		if (!opensans_bold.loadFromFile("fonts/OpenSans-Bold.ttf")) {
-			throw std::runtime_error("Failed to load fonts/OpenSans-Bold.ttf");
-		}
-		if (!bgm.openFromFile("music/elpsykongroo.wav")) {
-			throw std::runtime_error("Failed to load music/elpsykongroo.wav");
-		}
-		if (!pew_buffer.loadFromFile("soundfx/pew.wav")) {
-			throw std::runtime_error("Failed to load soundfx/pew.wav");
-		}
-		if (!bloop_buffer.loadFromFile("soundfx/beep-02.wav")) {
-			throw std::runtime_error("Failed to load soundfx/beep-02.wav");
-		}
-		bgm.setLoop(true);
-		bgm.setVolume(25);
-		bgm.play();
-		bloop.setBuffer(bloop_buffer);
-		bloop.setVolume(50);
-		pew.setBuffer(pew_buffer);
-		pew.setVolume(30);
-		background_t.loadFromFile("images/background.png");
-		tileset_t.loadFromFile("images/tiles.png");
-		frame_t.loadFromFile("images/frame.png");
-		background = sf::Sprite(background_t);
-		frame = sf::Sprite(frame_t);
-		std::srand(time(NULL));
-
-		currentPiece = Tetris::Piece(std::rand() % 7, std::rand() % 7 + 1);
-		for (int i = 0; i < 4; i++)
-		{
-			a[i].x = currentPiece.getFigure()[i] % 2;
-			a[i].y = currentPiece.getFigure()[i] / 2;
-		}
+		loadAssets();
+		setupMusic();
+		setupSounds();
+		setupImages();
+		generatePiece();		
 	}
+
+void Game::loadAssets()
+{
+	if (!opensans_bold.loadFromFile("fonts/OpenSans-Bold.ttf")) {
+		throw std::runtime_error("Failed to load fonts/OpenSans-Bold.ttf");
+	}
+	if (!bgm.openFromFile("music/elpsykongroo.wav")) {
+		throw std::runtime_error("Failed to load music/elpsykongroo.wav");
+	}
+	if (!pew_buffer.loadFromFile("soundfx/pew.wav")) {
+		throw std::runtime_error("Failed to load soundfx/pew.wav");
+	}
+	if (!bloop_buffer.loadFromFile("soundfx/beep-02.wav")) {
+		throw std::runtime_error("Failed to load soundfx/beep-02.wav");
+	}
+	if (!background_t.loadFromFile("images/background.png")) {
+		throw std::runtime_error("Failed to load images/background.png");
+	}
+	if (!tileset_t.loadFromFile("images/tiles.png")) {
+		throw std::runtime_error("Failed to load images/tiles.png");
+	}
+	
+	if (!frame_t.loadFromFile("images/frame.png")) {
+		throw std::runtime_error("Failed to load images/frame.png");
+	}	
+}
+
+void Game::setupMusic()
+{
+	bgm.setLoop(true);
+	bgm.setVolume(25);
+	bgm.play();
+}
+
+void Game::setupSounds()
+{
+	bloop.setBuffer(bloop_buffer);
+	bloop.setVolume(50);
+	pew.setBuffer(pew_buffer);
+	pew.setVolume(30);
+}
+
+void Game::setupImages()
+{
+	background = sf::Sprite(background_t);
+	frame = sf::Sprite(frame_t);
+}
+
+void Game::generatePiece()
+{
+	currentPiece = Tetris::Piece(std::rand() % 7, std::rand() % 7 + 1);
+	for (int i = 0; i < 4; i++)
+	{
+		a[i].x = currentPiece.getFigure()[i] % 2;
+		a[i].y = currentPiece.getFigure()[i] / 2;
+	}
+}
 
 void Game::run()
 {
@@ -146,13 +176,8 @@ void Game::tick()
 				board.getField()[b[i].y][b[i].x] = currentPiece.getColor();
 
 			}
-			score += 15;	
-			currentPiece = Tetris::Piece(std::rand() % 7, 1 + std::rand() % 7);
-			for (int i = 0; i < 4; i++)
-			{
-				a[i].x = currentPiece.getFigure()[i] % 2;
-				a[i].y = currentPiece.getFigure()[i] / 2;
-			}
+			score += 1;	
+			generatePiece();
 		}
 		timer = 0;
 	}
@@ -160,7 +185,7 @@ void Game::tick()
 
 bool Game::check()
 {
-	std::vector<std::vector<int>> field = board.getField();
+	auto field = board.getField();
 	int M = board.getLines();
 	int N = board.getCollumns();
 	for (int i=0;i<4;i++)
@@ -179,7 +204,7 @@ void Game::checkLines()
 {
 	int M = board.getLines();
 	int N = board.getCollumns();
-	std::vector<std::vector<int>> field = board.getField();
+	auto field = board.getField();
 	int k = M - 1;
 	checkScores();
 	for (int i = M - 1; i > 0; i--) {
@@ -201,7 +226,7 @@ void Game::render()
 {
 	int M = board.getLines();
 	int N = board.getCollumns();
-	std::vector<std::vector<int>> field = board.getField();
+	auto field = board.getField();
 	sf::Sprite s(tileset_t);
 	window.clear();
 	window.draw(background);
@@ -221,8 +246,22 @@ void Game::render()
 		s.move(28,31); //offset
 		window.draw(s);
 	}
+	
+
+	processText();
+
+	window.draw(scoreboard);
+
+	window.draw(frame);
+	if(paused)
+		window.draw(paused_text);
+
+	window.display();
+}
+
+void Game::processText()
+{
 	std::stringstream ss;
-	sf::Text scoreboard;
 	scoreboard.setFont(opensans_bold);
 	ss << "Score: " << score;
 	scoreboard.setString(ss.str());
@@ -232,7 +271,6 @@ void Game::render()
 	scoreboard.setOutlineColor(sf::Color::Black);
 	scoreboard.setOutlineThickness(3);
 
-	sf::Text paused_text;
 	paused_text.setFont(opensans_bold);
 	paused_text.setString("PAUSED");
 	paused_text.setCharacterSize(50);
@@ -240,16 +278,6 @@ void Game::render()
 	paused_text.setFillColor(sf::Color::Red);
 	paused_text.setOutlineColor(sf::Color::Black);
 	paused_text.setOutlineThickness(3);
-	auto function = [&](int i ) {
-		return i + 1;
-	};
-	window.draw(scoreboard);
-
-	window.draw(frame);
-	if(paused)
-		window.draw(paused_text);
-
-	window.display();
 }
 
 // Naive implementation, temporary, works for now.
