@@ -1,6 +1,6 @@
 
 CC=g++
-LIBS=-lpthread -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system
+LIBS=-fopenmp -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system
 SRCDIR=src
 INCLUDEDIR=include
 all:

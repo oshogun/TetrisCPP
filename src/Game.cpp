@@ -7,19 +7,28 @@ Game::Game():
 	dx(0), dy(0),
 	timer(0.f), delay(0.8f),
 	currentPiece(1, 1),
+	score(0),
 	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Close) 
-	{
+	{	
+		if (!opensans_bold.loadFromFile("fonts/OpenSans-Bold.ttf")) {
+			throw std::runtime_error("Failed to load fonts/OpenSans-Bold.ttf");
+		}
 		if (!bgm.openFromFile("music/elpsykongroo.wav")) {
 			throw std::runtime_error("Failed to load music/elpsykongroo.wav");
 		}
-		if (!pew_buffer.loadFromFile("soundfx/beep-02.wav")) {
+		if (!pew_buffer.loadFromFile("soundfx/pew.wav")) {
+			throw std::runtime_error("Failed to load soundfx/pew.wav");
+		}
+		if (!bloop_buffer.loadFromFile("soundfx/beep-02.wav")) {
 			throw std::runtime_error("Failed to load soundfx/beep-02.wav");
 		}
 		bgm.setLoop(true);
 		bgm.setVolume(25);
 		bgm.play();
+		bloop.setBuffer(bloop_buffer);
+		bloop.setVolume(50);
 		pew.setBuffer(pew_buffer);
-		pew.setVolume(50);
+		pew.setVolume(30);
 		background_t.loadFromFile("images/background.png");
 		tileset_t.loadFromFile("images/tiles.png");
 		frame_t.loadFromFile("images/frame.png");
@@ -49,7 +58,7 @@ void Game::run()
 		update();
 		dx = 0; 
 		rotate = false; 
-		delay = 0.3;
+		delay = 0.6;
 		render();
 	}
 }
@@ -62,7 +71,7 @@ void Game::processEvents()
 			window.close();
 		}
 		if (event.type == sf::Event::KeyPressed) {
-			pew.play();
+			bloop.play();
 			if(event.key.code == sf::Keyboard::Up)
 				rotate = true;
 			else if (event.key.code == sf::Keyboard::Left)
@@ -70,8 +79,10 @@ void Game::processEvents()
 			else if (event.key.code == sf::Keyboard::Right)
 				dx = 1;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) 
-			delay = 0.01;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			delay -=1;
+		}
+			
 	}
 }
 
@@ -128,8 +139,9 @@ void Game::tick()
 		if (!check()) {
 			for (int i = 0; i < 4; i++) {
 				board.getField()[b[i].y][b[i].x] = currentPiece.getColor();
-			}
 
+			}
+			score += 15;	
 			currentPiece = Tetris::Piece(std::rand() % 7, 1 + std::rand() % 7);
 			for (int i = 0; i < 4; i++)
 			{
@@ -147,8 +159,11 @@ bool Game::check()
 	int M = board.getLines();
 	int N = board.getCollumns();
 	for (int i=0;i<4;i++)
-	  if (a[i].x<0 || a[i].x>=N || a[i].y>=M) return 0;
-      else if (field[a[i].y][a[i].x]) { 
+	  if (a[i].x<0 || a[i].x>=N || a[i].y>=M) {
+	      return 0;
+	  }
+
+      else if (field[a[i].y][a[i].x]) {       	  
       	  return 0;
       }
 
@@ -161,18 +176,19 @@ void Game::checkLines()
 	int N = board.getCollumns();
 	std::vector<std::vector<int>> field = board.getField();
 	int k = M - 1;
-
+	checkScores();
 	for (int i = M - 1; i > 0; i--) {
 		int count = 0;
 		for (int j = 0; j < N; j++ ) {
-			if (field[i][j])
+			if (field[i][j]) {
 				count++;
-			board.getField()[k][j] = board.getField()[i][j];
-			
+			}
+			board.getField()[k][j] = board.getField()[i][j];			
 		}
 		if (count < N) {
 			k--;			
 		}
+		
 	}
 
 }
@@ -200,6 +216,69 @@ void Game::render()
 		s.move(28,31); //offset
 		window.draw(s);
 	}
+	std::stringstream ss;
+	sf::Text scoreboard;
+	scoreboard.setFont(opensans_bold);
+	ss << "Score: " << score;
+	scoreboard.setString(ss.str());
+	scoreboard.setCharacterSize(30);
+	scoreboard.setPosition(0, 450);
+	scoreboard.setFillColor(sf::Color::Yellow);
+	scoreboard.setOutlineColor(sf::Color::Black);
+	scoreboard.setOutlineThickness(3);
+	auto function = [&](int i ) {
+		return i + 1;
+	};
+	window.draw(scoreboard);
 	window.draw(frame);
 	window.display();
+}
+
+// Naive implementation, temporary, works for now.
+void Game::checkScores()
+{
+	int M = board.getLines();
+	int N = board.getCollumns();
+
+	int count = 0;
+	int linesCleared = 0;
+
+	for(int i = 0; i < M; i++) {
+		for (int j = 0; j < N; j++) {
+			if(!board.getField()[i][j]) {
+				count = 0;
+				continue;
+			}
+			else
+				count++;
+		}
+		if (count == N) {
+			linesCleared++;
+		} 
+		count = 0;
+	}
+
+	score += score * 2 * linesCleared;
+
+	if (linesCleared != 0) {
+		switch(linesCleared) {
+			case 1:
+				pew.setVolume(30);
+				break;
+			case 2:
+				pew.setVolume(10);
+				break;
+			case 3:
+				pew.setVolume(2);
+				break;
+			case 4:
+				pew.setVolume(100);
+		}
+		pew.play();
+		std::cout << "kek\n";
+	}
+	if (linesCleared == 4) {
+		std::cout << "TETRIS\n";
+	}
+
 }
