@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
-#include <omp.h>
 
 class Game {
 public:
@@ -33,7 +32,7 @@ private:
 
 private:
 	Tetris::Piece currentPiece;
-	bool rotate;
+	bool rotate, paused;
 	int dx, dy;
 	float timer, delay;
 	unsigned score;

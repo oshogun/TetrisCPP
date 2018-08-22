@@ -8,6 +8,7 @@ Game::Game():
 	timer(0.f), delay(0.8f),
 	currentPiece(1, 1),
 	score(0),
+	paused(false),
 	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Close) 
 	{	
 		if (!opensans_bold.loadFromFile("fonts/OpenSans-Bold.ttf")) {
@@ -53,9 +54,11 @@ void Game::run()
 		clock.restart();
 		timer += time;
 		
+
 		processEvents();
 
-		update();
+		if(!paused)
+			update();
 		dx = 0; 
 		rotate = false; 
 		delay = 0.6;
@@ -78,6 +81,8 @@ void Game::processEvents()
 				dx = -1; 
 			else if (event.key.code == sf::Keyboard::Right)
 				dx = 1;
+			else if (event.key.code == sf::Keyboard::Escape)
+				paused = !paused;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 			delay -=1;
@@ -226,11 +231,24 @@ void Game::render()
 	scoreboard.setFillColor(sf::Color::Yellow);
 	scoreboard.setOutlineColor(sf::Color::Black);
 	scoreboard.setOutlineThickness(3);
+
+	sf::Text paused_text;
+	paused_text.setFont(opensans_bold);
+	paused_text.setString("PAUSED");
+	paused_text.setCharacterSize(50);
+	paused_text.setPosition(320 / 4, 450 / 2);
+	paused_text.setFillColor(sf::Color::Red);
+	paused_text.setOutlineColor(sf::Color::Black);
+	paused_text.setOutlineThickness(3);
 	auto function = [&](int i ) {
 		return i + 1;
 	};
 	window.draw(scoreboard);
+
 	window.draw(frame);
+	if(paused)
+		window.draw(paused_text);
+
 	window.display();
 }
 
