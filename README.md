@@ -27,12 +27,11 @@ in order to update your repositories and packages:
  # Building the game
  
  The build process is very straightforward. 
- 
-  - To clean up the binary, run
+- To clean up the binary, run
       
-      $  make clean
+      $ make clean
       
-  - To compile the game, run
+- To compile the game, run
       
       $  make
       
