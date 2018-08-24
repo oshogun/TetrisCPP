@@ -70,8 +70,8 @@ void Game::generatePiece()
 	currentPiece = Tetris::Piece(std::rand() % 7, std::rand() % 7 + 1);
 	for (int i = 0; i < 4; i++)
 	{
-		a[i].x = currentPiece.getFigure()[i] % 2;
-		a[i].y = currentPiece.getFigure()[i] / 2;
+		a.at(i).x = currentPiece.getFigure().at(i) % 2;
+		a.at(i).y = currentPiece.getFigure().at(i) / 2;
 	}
 }
 
@@ -133,13 +133,13 @@ void Game::update()
 void Game::move()
 {
 	for (int i = 0; i < 4; i++) {
-		b[i] = a[i];
-		a[i].x += dx;
+		b.at(i) = a.at(i);
+		a.at(i).x += dx;
 	}
 
 	if (!check()) {
 		for (int i = 0; i < 4; i++) {
-			a[i] = b[i];
+			a.at(i) = b.at(i);
 		}
 	}
 }
@@ -151,15 +151,15 @@ void Game::rotatePiece()
 
 		for (int i = 0; i < 4; i++) 
 		{
-			int x = a[i].y-p.y;
-			int y = a[i].x-p.x;
-			a[i].x = p.x - x;
-			a[i].y = p.y + y;
+			int x = a.at(i).y-p.y;
+			int y = a.at(i).x-p.x;
+			a.at(i).x = p.x - x;
+			a.at(i).y = p.y + y;
 		}
 
 		if (!check()) {
 			for (int i = 0; i < 4; i++)
-				a[i] = b[i];
+				a.at(i) = b.at(i);
 		}
 	}
 }
@@ -168,12 +168,12 @@ void Game::tick()
 {
 	if (timer > delay) {
 		for (int i = 0; i < 4; i++) {
-			b[i] = a[i];
-			a[i].y += 1;
+			b.at(i) = a.at(i);
+			a.at(i).y += 1;
 		}
 		if (!check()) {
 			for (int i = 0; i < 4; i++) {
-				board.getField()[b[i].y][b[i].x] = currentPiece.getColor();
+				board.getField().at(b.at(i).y).at(b.at(i).x) = currentPiece.getColor();
 
 			}
 			score += 1;	
@@ -189,11 +189,11 @@ bool Game::check()
 	int M = board.getLines();
 	int N = board.getCollumns();
 	for (int i=0;i<4;i++)
-	  if (a[i].x<0 || a[i].x>=N || a[i].y>=M) {
+	  if (a.at(i).x<0 || a.at(i).x>=N || a.at(i).y>=M) {
 	      return 0;
 	  }
 
-      else if (field[a[i].y][a[i].x]) {       	  
+      else if (field.at(a.at(i).y).at(a.at(i).x)) {       	  
       	  return 0;
       }
 
@@ -210,10 +210,10 @@ void Game::checkLines()
 	for (int i = M - 1; i > 0; i--) {
 		int count = 0;
 		for (int j = 0; j < N; j++ ) {
-			if (field[i][j]) {
+			if (field.at(i).at(j)) {
 				count++;
 			}
-			board.getField()[k][j] = board.getField()[i][j];			
+			board.getField().at(k).at(j) = board.getField().at(i).at(j);			
 		}
 		if (count < N) {
 			k--;			
@@ -232,9 +232,9 @@ void Game::render()
 	window.draw(background);
 	for (int i = 0; i < M; i++)
 		for (int j = 0; j < N; j++) {
-			if (field[i][j] == 0)
+			if (field.at(i).at(j) == 0)
 				continue;
-			s.setTextureRect(sf::IntRect(field[i][j] * 18, 0, 18, 18));
+			s.setTextureRect(sf::IntRect(field.at(i).at(j) * 18, 0, 18, 18));
 			s.setPosition(j * 18, i * 18);
 			s.move(28, 31); // offset
 			window.draw(s);
@@ -242,7 +242,7 @@ void Game::render()
 
 	for (int i = 0; i < 4; i++) {
 		s.setTextureRect(sf::IntRect(currentPiece.getColor() * 18, 0, 18, 18));
-		s.setPosition(a[i].x * 18, a[i].y * 18);
+		s.setPosition(a.at(i).x * 18, a.at(i).y * 18);
 		s.move(28,31); //offset
 		window.draw(s);
 	}
@@ -291,7 +291,7 @@ void Game::checkScores()
 
 	for(int i = 0; i < M; i++) {
 		for (int j = 0; j < N; j++) {
-			if(!board.getField()[i][j]) {
+			if(!board.getField().at(i).at(j)) {
 				count = 0;
 				continue;
 			}
@@ -304,7 +304,7 @@ void Game::checkScores()
 		count = 0;
 	}
 
-	score += score * 2 * linesCleared;
+	score += (linesCleared * linesCleared + 3202 * linesCleared + pow(2, linesCleared)) / 223;
 
 	if (linesCleared != 0) {
 		switch(linesCleared) {

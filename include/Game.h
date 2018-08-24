@@ -10,33 +10,58 @@
 #include <iostream>
 #include <stdexcept>
 
+/*!
+ * @brief Main class of the game.
+ * 
+ * This class contains all the logic for 
+ * the actual engine of the game. This is
+ * currently a candidate for heavy refactoring
+ * since this class is currently handling way more than
+ * I believe it should.
+ * 
+ */
 class Game {
 public:
+	/*!
+	 * @brief      Constructs the game object.
+	 * This constructor instantiates the game's attributes, 
+	 * including initializing the main window.
+	 */
 	Game();
+	/*!
+	 * @brief      Runs the game loop.
+	 * 
+	 * This is the main method to call after instantiating
+	 * the game object, because it is what will start running the game.
+	 * It contains the main game loop.
+	 */
 	void run();
 
 private:
-	// basic game loop methods
-	void processEvents();
+	
+	// Main game loop functions
+	void processEvents();	
 	void update();
 	void render();
 
-	// tetris-logic related methods
+	// Main game logic functions
 	bool check();
-
 	void move();
 	void rotatePiece();
 	void tick();
 	void checkLines();
 	void checkScores();
 	void processText();
+	void generatePiece();
 
-	// literally all the shit the constructor calls
+
+	// Functions called by the constructor
 	void loadAssets();
 	void setupMusic();
 	void setupSounds();
 	void setupImages();
-	void generatePiece();
+
+	
 
 private:
 	Tetris::Piece currentPiece;
@@ -47,7 +72,7 @@ private:
 	Tetris::Board board;
 	std::vector<Tetris::Point>a, b;
 
-	// SFML Resources
+	// TODO: MOVE THIS SHIT AWAY FROM THIS CLASS:
 	sf::RenderWindow window;
 	sf::Texture background_t, frame_t, tileset_t;
 	sf::Sprite background, frame;

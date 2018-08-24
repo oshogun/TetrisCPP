@@ -32,9 +32,9 @@ namespace Tetris {
 
 	Piece::Piece(int _type, int _color):type(_type), color(_color){}
 
-	std::vector<int> Piece::getFigure()
+	std::array<int,4> Piece::getFigure()
 	{
-		return figures[type];
+		return figures.at(type);
 	}
 
 	int Piece::getType() 

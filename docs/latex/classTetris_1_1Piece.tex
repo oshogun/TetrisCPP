@@ -1,0 +1,93 @@
+\hypertarget{classTetris_1_1Piece}{}\section{Tetris\+:\+:Piece Class Reference}
+\label{classTetris_1_1Piece}\index{Tetris\+::\+Piece@{Tetris\+::\+Piece}}
+
+
+Class for the tetris pieces.  
+
+
+
+
+{\ttfamily \#include $<$Tetris.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTetris_1_1Piece_a551b1f7851de00df380b5bab5180cbe1}{Piece}} (int type, int color)
+\begin{DoxyCompactList}\small\item\em Constructs the Tetris piece. \end{DoxyCompactList}\item 
+std\+::array$<$ int, 4 $>$ \mbox{\hyperlink{classTetris_1_1Piece_a616e7a5ae459622d8ee9ccbf727a6b90}{get\+Figure}} ()
+\begin{DoxyCompactList}\small\item\em Gets the figure of the piece. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTetris_1_1Piece_a86c8c8e4d4ea1fb4d89e262c72e28c4e}{get\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Gets the color of the piece. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTetris_1_1Piece_a9d73e1c773c17d96fce8a84e7bf0b1bb}{get\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Gets the type of the piece. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for the tetris pieces. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTetris_1_1Piece_a551b1f7851de00df380b5bab5180cbe1}\label{classTetris_1_1Piece_a551b1f7851de00df380b5bab5180cbe1}} 
+\index{Tetris\+::\+Piece@{Tetris\+::\+Piece}!Piece@{Piece}}
+\index{Piece@{Piece}!Tetris\+::\+Piece@{Tetris\+::\+Piece}}
+\subsubsection{\texorpdfstring{Piece()}{Piece()}}
+{\footnotesize\ttfamily Tetris\+::\+Piece\+::\+Piece (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{int}]{color }\end{DoxyParamCaption})}
+
+
+
+Constructs the Tetris piece. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type} & The type of the piece \\
+\hline
+\mbox{\tt in}  & {\em color} & The color of the piece \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTetris_1_1Piece_a86c8c8e4d4ea1fb4d89e262c72e28c4e}\label{classTetris_1_1Piece_a86c8c8e4d4ea1fb4d89e262c72e28c4e}} 
+\index{Tetris\+::\+Piece@{Tetris\+::\+Piece}!get\+Color@{get\+Color}}
+\index{get\+Color@{get\+Color}!Tetris\+::\+Piece@{Tetris\+::\+Piece}}
+\subsubsection{\texorpdfstring{get\+Color()}{getColor()}}
+{\footnotesize\ttfamily int Tetris\+::\+Piece\+::get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the color of the piece. 
+
+\begin{DoxyReturn}{Returns}
+The color. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTetris_1_1Piece_a616e7a5ae459622d8ee9ccbf727a6b90}\label{classTetris_1_1Piece_a616e7a5ae459622d8ee9ccbf727a6b90}} 
+\index{Tetris\+::\+Piece@{Tetris\+::\+Piece}!get\+Figure@{get\+Figure}}
+\index{get\+Figure@{get\+Figure}!Tetris\+::\+Piece@{Tetris\+::\+Piece}}
+\subsubsection{\texorpdfstring{get\+Figure()}{getFigure()}}
+{\footnotesize\ttfamily std\+::array$<$ int, 4 $>$ Tetris\+::\+Piece\+::get\+Figure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the figure of the piece. 
+
+\begin{DoxyReturn}{Returns}
+The figure of the piece (as an integer std\+::array). As this returns a c++11 array, we recommend usage of .at() instead of \mbox{[}\mbox{]}, in order to obtain bound safety. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTetris_1_1Piece_a9d73e1c773c17d96fce8a84e7bf0b1bb}\label{classTetris_1_1Piece_a9d73e1c773c17d96fce8a84e7bf0b1bb}} 
+\index{Tetris\+::\+Piece@{Tetris\+::\+Piece}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Tetris\+::\+Piece@{Tetris\+::\+Piece}}
+\subsubsection{\texorpdfstring{get\+Type()}{getType()}}
+{\footnotesize\ttfamily int Tetris\+::\+Piece\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the type of the piece. 
+
+\begin{DoxyReturn}{Returns}
+The type. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Tetris.\+h\item 
+src/Tetris.\+cpp\end{DoxyCompactItemize}
