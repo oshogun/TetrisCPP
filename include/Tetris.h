@@ -16,9 +16,32 @@ namespace Tetris {
 	class Board {
 
 	public:
+		/**
+		 * @brief      Constructs the board
+		 *
+		 * @param[in]  M     the number of lines
+		 * @param[in]  N     the number of collumns
+		 */
 		Board(int M, int N);
+		/**
+		 * @brief      Gets the tetris field (as reference)
+		 *
+		 * @return     The field (2-dimensional vector of int).
+		 */
 		std::vector<std::vector<int>> & getField();
+
+		/**
+		 * @brief      Gets the number of lines
+		 *
+		 * @return     The number of lines.
+		 */
 		int getLines();
+
+		/**
+		 * @brief      Gets the number of collumns.
+		 *
+		 * @return     The number of collumns.
+		 */
 		int getCollumns();
 
 	private:

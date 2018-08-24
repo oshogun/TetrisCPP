@@ -80,22 +80,121 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8506030098461969d7c049785350622d"><td class="memItemLeft" align="right" valign="top"><a id="a8506030098461969d7c049785350622d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Board</b> (int M, int N)</td></tr>
+<tr class="memitem:a8506030098461969d7c049785350622d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTetris_1_1Board.html#a8506030098461969d7c049785350622d">Board</a> (int M, int N)</td></tr>
+<tr class="memdesc:a8506030098461969d7c049785350622d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the board.  <a href="#a8506030098461969d7c049785350622d">More...</a><br /></td></tr>
 <tr class="separator:a8506030098461969d7c049785350622d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab282516ec2ee361b956ccc68a6e661df"><td class="memItemLeft" align="right" valign="top"><a id="ab282516ec2ee361b956ccc68a6e661df"></a>
-std::vector&lt; std::vector&lt; int &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getField</b> ()</td></tr>
+<tr class="memitem:ab282516ec2ee361b956ccc68a6e661df"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; int &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTetris_1_1Board.html#ab282516ec2ee361b956ccc68a6e661df">getField</a> ()</td></tr>
+<tr class="memdesc:ab282516ec2ee361b956ccc68a6e661df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tetris field (as reference)  <a href="#ab282516ec2ee361b956ccc68a6e661df">More...</a><br /></td></tr>
 <tr class="separator:ab282516ec2ee361b956ccc68a6e661df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53a614c61a25dfb508ccb45f235bb3b5"><td class="memItemLeft" align="right" valign="top"><a id="a53a614c61a25dfb508ccb45f235bb3b5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getLines</b> ()</td></tr>
+<tr class="memitem:a53a614c61a25dfb508ccb45f235bb3b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTetris_1_1Board.html#a53a614c61a25dfb508ccb45f235bb3b5">getLines</a> ()</td></tr>
+<tr class="memdesc:a53a614c61a25dfb508ccb45f235bb3b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of lines.  <a href="#a53a614c61a25dfb508ccb45f235bb3b5">More...</a><br /></td></tr>
 <tr class="separator:a53a614c61a25dfb508ccb45f235bb3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abff7a1233d19e4044b7d4ff35a347087"><td class="memItemLeft" align="right" valign="top"><a id="abff7a1233d19e4044b7d4ff35a347087"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getCollumns</b> ()</td></tr>
+<tr class="memitem:abff7a1233d19e4044b7d4ff35a347087"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTetris_1_1Board.html#abff7a1233d19e4044b7d4ff35a347087">getCollumns</a> ()</td></tr>
+<tr class="memdesc:abff7a1233d19e4044b7d4ff35a347087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of collumns.  <a href="#abff7a1233d19e4044b7d4ff35a347087">More...</a><br /></td></tr>
 <tr class="separator:abff7a1233d19e4044b7d4ff35a347087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for the Tetris board. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8506030098461969d7c049785350622d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8506030098461969d7c049785350622d">&#9670;&nbsp;</a></span>Board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tetris::Board::Board </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs the board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">M</td><td>the number of lines </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">N</td><td>the number of collumns </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abff7a1233d19e4044b7d4ff35a347087"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abff7a1233d19e4044b7d4ff35a347087">&#9670;&nbsp;</a></span>getCollumns()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Tetris::Board::getCollumns </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of collumns. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of collumns. </dd></dl>
+
+</div>
+</div>
+<a id="ab282516ec2ee361b956ccc68a6e661df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab282516ec2ee361b956ccc68a6e661df">&#9670;&nbsp;</a></span>getField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; int &gt; &gt; &amp; Tetris::Board::getField </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the tetris field (as reference) </p>
+<dl class="section return"><dt>Returns</dt><dd>The field (2-dimensional vector of int). </dd></dl>
+
+</div>
+</div>
+<a id="a53a614c61a25dfb508ccb45f235bb3b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a614c61a25dfb508ccb45f235bb3b5">&#9670;&nbsp;</a></span>getLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Tetris::Board::getLines </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of lines. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of lines. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="Tetris_8h_source.html">Tetris.h</a></li>
 <li>src/Tetris.cpp</li>
 </ul>

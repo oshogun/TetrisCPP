@@ -12,22 +12,80 @@ Class for the Tetris board.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTetris_1_1Board_a8506030098461969d7c049785350622d}\label{classTetris_1_1Board_a8506030098461969d7c049785350622d}} 
-{\bfseries Board} (int M, int N)
-\item 
-\mbox{\Hypertarget{classTetris_1_1Board_ab282516ec2ee361b956ccc68a6e661df}\label{classTetris_1_1Board_ab282516ec2ee361b956ccc68a6e661df}} 
-std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& {\bfseries get\+Field} ()
-\item 
-\mbox{\Hypertarget{classTetris_1_1Board_a53a614c61a25dfb508ccb45f235bb3b5}\label{classTetris_1_1Board_a53a614c61a25dfb508ccb45f235bb3b5}} 
-int {\bfseries get\+Lines} ()
-\item 
-\mbox{\Hypertarget{classTetris_1_1Board_abff7a1233d19e4044b7d4ff35a347087}\label{classTetris_1_1Board_abff7a1233d19e4044b7d4ff35a347087}} 
-int {\bfseries get\+Collumns} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classTetris_1_1Board_a8506030098461969d7c049785350622d}{Board}} (int M, int N)
+\begin{DoxyCompactList}\small\item\em Constructs the board. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& \mbox{\hyperlink{classTetris_1_1Board_ab282516ec2ee361b956ccc68a6e661df}{get\+Field}} ()
+\begin{DoxyCompactList}\small\item\em Gets the tetris field (as reference) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTetris_1_1Board_a53a614c61a25dfb508ccb45f235bb3b5}{get\+Lines}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of lines. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTetris_1_1Board_abff7a1233d19e4044b7d4ff35a347087}{get\+Collumns}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of collumns. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Class for the Tetris board. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTetris_1_1Board_a8506030098461969d7c049785350622d}\label{classTetris_1_1Board_a8506030098461969d7c049785350622d}} 
+\index{Tetris\+::\+Board@{Tetris\+::\+Board}!Board@{Board}}
+\index{Board@{Board}!Tetris\+::\+Board@{Tetris\+::\+Board}}
+\subsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily Tetris\+::\+Board\+::\+Board (\begin{DoxyParamCaption}\item[{int}]{M,  }\item[{int}]{N }\end{DoxyParamCaption})}
+
+
+
+Constructs the board. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em M} & the number of lines \\
+\hline
+\mbox{\tt in}  & {\em N} & the number of collumns \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTetris_1_1Board_abff7a1233d19e4044b7d4ff35a347087}\label{classTetris_1_1Board_abff7a1233d19e4044b7d4ff35a347087}} 
+\index{Tetris\+::\+Board@{Tetris\+::\+Board}!get\+Collumns@{get\+Collumns}}
+\index{get\+Collumns@{get\+Collumns}!Tetris\+::\+Board@{Tetris\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Collumns()}{getCollumns()}}
+{\footnotesize\ttfamily int Tetris\+::\+Board\+::get\+Collumns (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of collumns. 
+
+\begin{DoxyReturn}{Returns}
+The number of collumns. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTetris_1_1Board_ab282516ec2ee361b956ccc68a6e661df}\label{classTetris_1_1Board_ab282516ec2ee361b956ccc68a6e661df}} 
+\index{Tetris\+::\+Board@{Tetris\+::\+Board}!get\+Field@{get\+Field}}
+\index{get\+Field@{get\+Field}!Tetris\+::\+Board@{Tetris\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Field()}{getField()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& Tetris\+::\+Board\+::get\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the tetris field (as reference) 
+
+\begin{DoxyReturn}{Returns}
+The field (2-\/dimensional vector of int). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTetris_1_1Board_a53a614c61a25dfb508ccb45f235bb3b5}\label{classTetris_1_1Board_a53a614c61a25dfb508ccb45f235bb3b5}} 
+\index{Tetris\+::\+Board@{Tetris\+::\+Board}!get\+Lines@{get\+Lines}}
+\index{get\+Lines@{get\+Lines}!Tetris\+::\+Board@{Tetris\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Lines()}{getLines()}}
+{\footnotesize\ttfamily int Tetris\+::\+Board\+::get\+Lines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of lines. 
+
+\begin{DoxyReturn}{Returns}
+The number of lines. 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
