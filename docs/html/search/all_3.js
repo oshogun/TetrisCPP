@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
+  ['insertasset',['insertAsset',['../classAssetHolder.html#ae7d64002db05c07fa914d5fa902a98ee',1,'AssetHolder']]]
 ];

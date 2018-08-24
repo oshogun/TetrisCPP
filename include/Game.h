@@ -1,6 +1,8 @@
 #pragma once 
 
 #include "Tetris.h"
+#include "AssetHolder.hpp"
+#include "Assets.h"
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -10,14 +12,16 @@
 #include <iostream>
 #include <stdexcept>
 
+
 /*!
- * @brief Main class of the game.
+ * @brief Main class of the game. 
  * 
  * This class contains all the logic for 
  * the actual engine of the game. This is
  * currently a candidate for heavy refactoring
  * since this class is currently handling way more than
- * I believe it should.
+ * I believe it should, thus making it a fine example
+ * of the God Object Design Anti-Pattern.
  * 
  */
 class Game {
@@ -66,22 +70,19 @@ private:
 private:
 	Tetris::Piece currentPiece;
 	bool rotate, paused;
-	int dx, dy;
+	int dx;
 	float timer, delay;
 	unsigned score;
 	Tetris::Board board;
 	std::vector<Tetris::Point>a, b;
 
-	// TODO: MOVE THIS SHIT AWAY FROM THIS CLASS:
+	AssetHolder<sf::Texture, Assets> textureHolder;
+	AssetHolder<sf::Font, Assets> fontHolder;
+	AssetHolder<sf::SoundBuffer, Assets> soundBufferHolder;
+	
 	sf::RenderWindow window;
-	sf::Texture background_t, frame_t, tileset_t;
-	sf::Sprite background, frame;
 	sf::Music bgm;
-	sf::SoundBuffer pew_buffer;
-	sf::SoundBuffer bloop_buffer;
-	sf::Sound pew;
-	sf::Sound bloop;
-	sf::Font opensans_bold;
+	sf::Sound bloop, pew;
 	sf::Text scoreboard, paused_text;
 };
 

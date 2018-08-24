@@ -4,7 +4,7 @@ Game::Game():
 	board(20, 10),	
 	a(4), b(4),
 	rotate(false),
-	dx(0), dy(0),
+	dx(0),
 	timer(0.f), delay(0.8f),
 	currentPiece(1, 1),
 	score(0),
@@ -14,38 +14,25 @@ Game::Game():
 		loadAssets();
 		setupMusic();
 		setupSounds();
-		setupImages();
 		generatePiece();		
 	}
 
 void Game::loadAssets()
 {
-	if (!opensans_bold.loadFromFile("fonts/OpenSans-Bold.ttf")) {
-		throw std::runtime_error("Failed to load fonts/OpenSans-Bold.ttf");
-	}
+	fontHolder.loadAssetFromFile(font_opensans_bold, "fonts/OpenSans-Bold.ttf");	
 	if (!bgm.openFromFile("music/elpsykongroo.wav")) {
 		throw std::runtime_error("Failed to load music/elpsykongroo.wav");
 	}
-	if (!pew_buffer.loadFromFile("soundfx/pew.wav")) {
-		throw std::runtime_error("Failed to load soundfx/pew.wav");
-	}
-	if (!bloop_buffer.loadFromFile("soundfx/beep-02.wav")) {
-		throw std::runtime_error("Failed to load soundfx/beep-02.wav");
-	}
-	if (!background_t.loadFromFile("images/background.png")) {
-		throw std::runtime_error("Failed to load images/background.png");
-	}
-	if (!tileset_t.loadFromFile("images/tiles.png")) {
-		throw std::runtime_error("Failed to load images/tiles.png");
-	}
-	
-	if (!frame_t.loadFromFile("images/frame.png")) {
-		throw std::runtime_error("Failed to load images/frame.png");
-	}	
+	soundBufferHolder.loadAssetFromFile(soundBuffer_pew_buffer, "soundfx/pew.wav");	
+	soundBufferHolder.loadAssetFromFile(soundBuffer_bloop_buffer, "soundfx/beep-02.wav");	
+	textureHolder.loadAssetFromFile(background_texture, "images/background.png");
+	textureHolder.loadAssetFromFile(tileset_texture, "images/tiles.png");	
+	textureHolder.loadAssetFromFile(frame_texture, "images/frame.png");		
 }
 
 void Game::setupMusic()
-{
+{	
+	
 	bgm.setLoop(true);
 	bgm.setVolume(25);
 	bgm.play();
@@ -53,17 +40,12 @@ void Game::setupMusic()
 
 void Game::setupSounds()
 {
-	bloop.setBuffer(bloop_buffer);
+	bloop.setBuffer(soundBufferHolder.getAssetById(soundBuffer_bloop_buffer));
 	bloop.setVolume(50);
-	pew.setBuffer(pew_buffer);
+	pew.setBuffer(soundBufferHolder.getAssetById(soundBuffer_pew_buffer));
 	pew.setVolume(30);
 }
 
-void Game::setupImages()
-{
-	background = sf::Sprite(background_t);
-	frame = sf::Sprite(frame_t);
-}
 
 void Game::generatePiece()
 {
@@ -227,7 +209,11 @@ void Game::render()
 	int M = board.getLines();
 	int N = board.getCollumns();
 	auto field = board.getField();
-	sf::Sprite s(tileset_t);
+
+	sf::Sprite s(textureHolder.getAssetById(tileset_texture));
+	sf::Sprite background(textureHolder.getAssetById(background_texture));
+	sf::Sprite frame(textureHolder.getAssetById(frame_texture));
+
 	window.clear();
 	window.draw(background);
 	for (int i = 0; i < M; i++)
@@ -262,7 +248,7 @@ void Game::render()
 void Game::processText()
 {
 	std::stringstream ss;
-	scoreboard.setFont(opensans_bold);
+	scoreboard.setFont(fontHolder.getAssetById(font_opensans_bold));
 	ss << "Score: " << score;
 	scoreboard.setString(ss.str());
 	scoreboard.setCharacterSize(30);
@@ -271,7 +257,7 @@ void Game::processText()
 	scoreboard.setOutlineColor(sf::Color::Black);
 	scoreboard.setOutlineThickness(3);
 
-	paused_text.setFont(opensans_bold);
+	paused_text.setFont(fontHolder.getAssetById(font_opensans_bold));
 	paused_text.setString("PAUSED");
 	paused_text.setCharacterSize(50);
 	paused_text.setPosition(320 / 4, 450 / 2);
