@@ -29,8 +29,13 @@ in order to update your repositories and packages:
  The build process is very straightforward. 
  
   - To clean up the binary, run
-  
+      
       $ make clean
+      
   - To compile the game, run
+      
       $ make
-  The game will be available as ./Tetris
+      
+  The game will be available as 
+      
+      ./Tetris
