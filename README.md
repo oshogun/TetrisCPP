@@ -30,11 +30,11 @@ in order to update your repositories and packages:
  
   - To clean up the binary, run
       
-      $ make clean
+      $  make clean
       
   - To compile the game, run
       
-      $ make
+      $  make
       
   The game will be available as 
       
