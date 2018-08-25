@@ -124,7 +124,7 @@ void Game::processEvents()
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			delay -=1;
+			delay = 0.0001;
 		}
 			
 	}
@@ -156,7 +156,7 @@ void Game::move()
 void Game::rotatePiece()
 {
 	if (rotate && currentPiece.getType() != 6) {
-		Tetris::Point p = a[1]; // center of rotation
+		Tetris::Point p = a.at(1); // center of rotation
 
 		for (int i = 0; i < 4; i++) 
 		{
@@ -325,10 +325,10 @@ void Game::checkScores()
 		count = 0;
 	}	
 
-	score += (linesCleared * linesCleared + 3202 * linesCleared + pow(2, linesCleared)) / 223;
+
 	if (linesToNextLevel >= 10) {
 		level++;
-		linesToNextLevel = 0;
+		linesToNextLevel -= 10;
 		if (normaldelay > 0.05) {
 			normaldelay -= 0.05;
 		}
@@ -336,15 +336,19 @@ void Game::checkScores()
 	if (linesCleared != 0) {
 		switch(linesCleared) {
 			case 1:
+				score += 40 * (level + 1);
 				pew.setVolume(1);
 				break;
 			case 2:
+				score += 100 * (level + 1);
 				pew.setVolume(10);
 				break;
 			case 3:
+				score += 300 * (level + 1);
 				pew.setVolume(20);
 				break; 
 			case 4:
+				score += 1200 * (level + 1);
 				pew.setVolume(30);
 		}
 		pew.play();
