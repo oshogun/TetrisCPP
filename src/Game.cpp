@@ -5,11 +5,14 @@ Game::Game():
 	a(4), b(4),
 	rotate(false),
 	dx(0),
-	timer(0.f), delay(0.8f),
+	timer(0.f), delay(0.8f), normaldelay(0.8f),
 	currentPiece(1, 1),
 	score(0),
 	paused(false),
-	window(sf::VideoMode(320,480), "Tetris da KURISUTINA",sf::Style::Close) 
+	level(1),
+	totalClearedLines(0),
+	linesToNextLevel(0),
+	window(sf::VideoMode(640,480), "Tetris C++17 (Name Subject to Change)",sf::Style::Close) 
 	{	
 		loadAssets();
 		setupMusic();
@@ -30,6 +33,24 @@ void Game::loadAssets()
 	textureHolder.loadAssetFromFile(frame_texture, "images/frame.png");		
 }
 
+void Game::resetGame()
+{
+	board = Tetris::Board(20,10);
+	a = std::vector<Tetris::Point>(4);
+	b = std::vector<Tetris::Point>(4);
+	rotate = false;
+	dx = 0;
+	timer = 0;
+	delay = 0.8;
+	normaldelay = 0.8;
+	score = 0;
+	level = 1;
+	totalClearedLines = 0;
+	linesToNextLevel = 0;
+
+	generatePiece();
+	run();
+}
 void Game::setupMusic()
 {	
 	
@@ -61,7 +82,8 @@ void Game::run()
 {
 	
 	sf::Clock clock;	
-	while(window.isOpen()) {
+	running = true;
+	while(window.isOpen() && running) {
 		float time = clock.getElapsedTime().asSeconds();
 		clock.restart();
 		timer += time;
@@ -73,7 +95,7 @@ void Game::run()
 			update();
 		dx = 0; 
 		rotate = false; 
-		delay = 0.6;
+		delay = normaldelay;
 		render();
 	}
 }
@@ -95,6 +117,10 @@ void Game::processEvents()
 				dx = 1;
 			else if (event.key.code == sf::Keyboard::Escape)
 				paused = !paused;
+			else if (event.key.code == sf::Keyboard::R) {
+				running = false;
+				resetGame();
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 			delay -=1;
@@ -249,13 +275,19 @@ void Game::processText()
 {
 	std::stringstream ss;
 	scoreboard.setFont(fontHolder.getAssetById(font_opensans_bold));
-	ss << "Score: " << score;
+	ss << "Score: " << score << "\n\n";
+	ss << "Cleared Lines: " << totalClearedLines << "\n\n";
+	ss << "Level: " << level << "\n\n";
+	ss << "Cleared lines this level: " << linesToNextLevel << "\n\n";
+	ss << "Current Delay: " << normaldelay << "s\n\n";
 	scoreboard.setString(ss.str());
-	scoreboard.setCharacterSize(30);
-	scoreboard.setPosition(0, 450);
+	scoreboard.setCharacterSize(18);
+	scoreboard.setPosition(379, 22);
 	scoreboard.setFillColor(sf::Color::Yellow);
 	scoreboard.setOutlineColor(sf::Color::Black);
 	scoreboard.setOutlineThickness(3);
+
+
 
 	paused_text.setFont(fontHolder.getAssetById(font_opensans_bold));
 	paused_text.setString("PAUSED");
@@ -286,25 +318,33 @@ void Game::checkScores()
 		}
 		if (count == N) {
 			linesCleared++;
+			totalClearedLines++;
+			linesToNextLevel++;
 		} 
 		count = 0;
-	}
+	}	
 
 	score += (linesCleared * linesCleared + 3202 * linesCleared + pow(2, linesCleared)) / 223;
-
+	if (linesToNextLevel >= 10) {
+		level++;
+		linesToNextLevel = 0;
+		if (normaldelay > 0.05) {
+			normaldelay -= 0.05;
+		}
+	}
 	if (linesCleared != 0) {
 		switch(linesCleared) {
 			case 1:
-				pew.setVolume(30);
+				pew.setVolume(1);
 				break;
 			case 2:
 				pew.setVolume(10);
 				break;
 			case 3:
-				pew.setVolume(2);
-				break;
+				pew.setVolume(20);
+				break; 
 			case 4:
-				pew.setVolume(100);
+				pew.setVolume(30);
 		}
 		pew.play();
 		std::cout << "kek\n";

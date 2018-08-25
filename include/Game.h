@@ -57,7 +57,7 @@ private:
 	void checkScores();
 	void processText();
 	void generatePiece();
-
+	void resetGame();
 
 	// Functions called by the constructor
 	void loadAssets();
@@ -69,9 +69,9 @@ private:
 
 private:
 	Tetris::Piece currentPiece;
-	bool rotate, paused;
-	int dx;
-	float timer, delay;
+	bool rotate, paused, running;
+	int dx, totalClearedLines, linesToNextLevel, level;
+	float timer, delay, normaldelay;
 	unsigned score;
 	Tetris::Board board;
 	std::vector<Tetris::Point>a, b;
@@ -83,6 +83,6 @@ private:
 	sf::RenderWindow window;
 	sf::Music bgm;
 	sf::Sound bloop, pew;
-	sf::Text scoreboard, paused_text;
+	sf::Text scoreboard, paused_text, instructions;
 };
 
