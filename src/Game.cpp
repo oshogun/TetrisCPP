@@ -23,8 +23,8 @@ Game::Game():
 void Game::loadAssets()
 {
 	fontHolder.loadAssetFromFile(font_opensans_bold, "fonts/OpenSans-Bold.ttf");	
-	if (!bgm.openFromFile("music/elpsykongroo.wav")) {
-		throw std::runtime_error("Failed to load music/elpsykongroo.wav");
+	if (!bgm.openFromFile("music/borb.wav")) {
+		throw std::runtime_error("Failed to load music/borb.wav");
 	}
 	soundBufferHolder.loadAssetFromFile(soundBuffer_pew_buffer, "soundfx/pew.wav");	
 	soundBufferHolder.loadAssetFromFile(soundBuffer_bloop_buffer, "soundfx/beep-02.wav");	
@@ -168,8 +168,8 @@ void Game::rotatePiece()
 		if (!check()) {
 			for (int i = 0; i < 4; i++)
 				a.at(i) = b.at(i);
-		}
-	}
+		} 
+	} 
 }
 
 void Game::tick()
