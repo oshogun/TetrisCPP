@@ -56,6 +56,8 @@ private:
 	void checkLines();
 	void checkScores();
 	void processText();
+	void processScoreboard();
+	void processPausedText();
 	void generatePiece();
 	void resetGame();
 
@@ -74,7 +76,8 @@ private:
 	float timer, delay, normaldelay;
 	unsigned score;
 	Tetris::Board board;
-	std::vector<Tetris::Point>a, b;
+	std::array<Tetris::Point, 4>a, b;
+	std::array<int,7> pieceCount;
 
 	AssetHolder<sf::Texture, Assets> textureHolder;
 	AssetHolder<sf::Font, Assets> fontHolder;

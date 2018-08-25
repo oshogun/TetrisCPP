@@ -1,8 +1,6 @@
 #include "Game.h"
 
-Game::Game():
-	board(20, 10),	
-	a(4), b(4),
+Game::Game():	
 	rotate(false),
 	dx(0),
 	timer(0.f), delay(0.8f), normaldelay(0.8f),
@@ -35,9 +33,9 @@ void Game::loadAssets()
 
 void Game::resetGame()
 {
-	board = Tetris::Board(20,10);
-	a = std::vector<Tetris::Point>(4);
-	b = std::vector<Tetris::Point>(4);
+	a = {{0}};
+	b = {{0}};
+	board = Tetris::Board();
 	rotate = false;
 	dx = 0;
 	timer = 0;
@@ -274,6 +272,12 @@ void Game::render()
 
 void Game::processText()
 {
+	processScoreboard();
+	processPausedText();
+}
+
+void Game::processScoreboard()
+{
 	std::stringstream ss;
 	scoreboard.setFont(fontHolder.getAssetById(font_opensans_bold));
 	ss << "Score: " << score << "\n\n";
@@ -287,9 +291,10 @@ void Game::processText()
 	scoreboard.setFillColor(sf::Color::Yellow);
 	scoreboard.setOutlineColor(sf::Color::Black);
 	scoreboard.setOutlineThickness(3);
+}
 
-
-
+void Game::processPausedText()
+{
 	paused_text.setFont(fontHolder.getAssetById(font_opensans_bold));
 	paused_text.setString("PAUSED");
 	paused_text.setCharacterSize(50);
