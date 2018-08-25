@@ -53,7 +53,8 @@ void Game::resetGame()
 }
 void Game::setupMusic()
 {	
-	
+
+	bgm.setLoopPoints(sf::Music::Span(sf::seconds(3.058), sf::seconds(117.356)));
 	bgm.setLoop(true);
 	bgm.setVolume(25);
 	bgm.play();
