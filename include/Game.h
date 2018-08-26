@@ -58,6 +58,7 @@ private:
 	void processText();
 	void processScoreboard();
 	void processPausedText();
+	void processPieceCountText();
 	void generatePiece();
 	void resetGame();
 
@@ -86,6 +87,6 @@ private:
 	sf::RenderWindow window;
 	sf::Music bgm;
 	sf::Sound bloop, pew;
-	sf::Text scoreboard, paused_text, instructions;
+	sf::Text scoreboard, paused_text, instructions, pieceCountText;
 };
 

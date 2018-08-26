@@ -8,6 +8,7 @@ Game::Game():
 	score(0),
 	paused(false),
 	level(1),
+	pieceCount({0}),
 	totalClearedLines(0),
 	linesToNextLevel(0),
 	window(sf::VideoMode(640,480), "Tetris C++17 (Name Subject to Change)",sf::Style::Close) 
@@ -69,12 +70,14 @@ void Game::setupSounds()
 
 void Game::generatePiece()
 {
-	currentPiece = Tetris::Piece(std::rand() % 7, std::rand() % 7 + 1);
+	int pieceType = std::rand() % 7;
+	currentPiece = Tetris::Piece(pieceType, std::rand() % 7 + 1);
 	for (int i = 0; i < 4; i++)
 	{
 		a.at(i).x = currentPiece.getFigure().at(i) % 2;
 		a.at(i).y = currentPiece.getFigure().at(i) / 2;
 	}
+	pieceCount.at(pieceType)++;
 }
 
 void Game::run()
@@ -262,7 +265,7 @@ void Game::render()
 	processText();
 
 	window.draw(scoreboard);
-
+	window.draw(pieceCountText);
 	window.draw(frame);
 	if(paused)
 		window.draw(paused_text);
@@ -274,6 +277,7 @@ void Game::processText()
 {
 	processScoreboard();
 	processPausedText();
+	processPieceCountText();
 }
 
 void Game::processScoreboard()
@@ -298,10 +302,31 @@ void Game::processPausedText()
 	paused_text.setFont(fontHolder.getAssetById(font_opensans_bold));
 	paused_text.setString("PAUSED");
 	paused_text.setCharacterSize(50);
-	paused_text.setPosition(320 / 4, 450 / 2);
+	paused_text.setPosition(640 / 4, 450 / 2);
 	paused_text.setFillColor(sf::Color::Red);
 	paused_text.setOutlineColor(sf::Color::Black);
 	paused_text.setOutlineThickness(3);
+}
+
+
+void Game::processPieceCountText() 
+{
+	std::stringstream ss;
+	ss << "\n\nStatistics: \n\n";
+	ss << "Lenghty bois: " << pieceCount.at(0) << "\n";
+	ss << "Z pieces: " << pieceCount.at(1) << "\n";
+	ss << "S pieces: " << pieceCount.at(2) << "\n";
+	ss << "T pieces: " << pieceCount.at(3) << "\n";
+	ss << "L pieces: " << pieceCount.at(4) << "\n";
+	ss << "J pieces: " << pieceCount.at(5) << "\n";
+	ss << "Square bois: " << pieceCount.at(6) << "\n"; 
+	pieceCountText.setFont(fontHolder.getAssetById(font_opensans_bold));
+	pieceCountText.setString(ss.str());
+	pieceCountText.setCharacterSize(15);
+	pieceCountText.setPosition(379, 247);
+	pieceCountText.setFillColor(sf::Color::White);
+	pieceCountText.setOutlineColor(sf::Color::Black);
+	pieceCountText.setOutlineThickness(3);
 }
 
 // Naive implementation, temporary, works for now.
