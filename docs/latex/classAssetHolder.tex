@@ -16,7 +16,9 @@ void \mbox{\hyperlink{classAssetHolder_a3070fe83d5ef54d75011d2162b2d9948}{load\+
 \begin{DoxyCompactList}\small\item\em Loads an asset from file. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Parameter $>$ }\\void \mbox{\hyperlink{classAssetHolder_a4af355fb6909c492ad8a879130bd8897}{load\+Asset\+From\+File}} (Identifier id, const std\+::string \&filename, const Parameter \&param)
 \begin{DoxyCompactList}\small\item\em Loads an asset from file. \end{DoxyCompactList}\item 
-Asset \& \mbox{\hyperlink{classAssetHolder_abb7126c438d6f72a0eec983a98c272a9}{get\+Asset\+By\+Id}} (Identifier id) const
+Asset \& \mbox{\hyperlink{classAssetHolder_a73d1b14e75170e91a25d4f78a9494b0e}{get\+Asset\+By\+Id}} (Identifier id)
+\begin{DoxyCompactList}\small\item\em Gets the asset by identifier. \end{DoxyCompactList}\item 
+const Asset \& \mbox{\hyperlink{classAssetHolder_a6e31c8853bf2442e58224f445b2be4bf}{get\+Asset\+By\+Id}} (Identifier id) const
 \begin{DoxyCompactList}\small\item\em Gets the asset by identifier. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classAssetHolder_ae7d64002db05c07fa914d5fa902a98ee}{insert\+Asset}} (Identifier id, std\+::unique\+\_\+ptr$<$ Asset $>$ asset)
 \begin{DoxyCompactList}\small\item\em Inserts an asset into the asset map. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -38,12 +40,31 @@ Class for the Asset holder.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classAssetHolder_abb7126c438d6f72a0eec983a98c272a9}\label{classAssetHolder_abb7126c438d6f72a0eec983a98c272a9}} 
+\mbox{\Hypertarget{classAssetHolder_a73d1b14e75170e91a25d4f78a9494b0e}\label{classAssetHolder_a73d1b14e75170e91a25d4f78a9494b0e}} 
 \index{Asset\+Holder@{Asset\+Holder}!get\+Asset\+By\+Id@{get\+Asset\+By\+Id}}
 \index{get\+Asset\+By\+Id@{get\+Asset\+By\+Id}!Asset\+Holder@{Asset\+Holder}}
-\subsubsection{\texorpdfstring{get\+Asset\+By\+Id()}{getAssetById()}}
-{\footnotesize\ttfamily template$<$typename Asset , typename Identifier $>$ \\
-Asset\& \mbox{\hyperlink{classAssetHolder}{Asset\+Holder}}$<$ Asset, Identifier $>$\+::get\+Asset\+By\+Id (\begin{DoxyParamCaption}\item[{Identifier}]{id }\end{DoxyParamCaption}) const}
+\subsubsection{\texorpdfstring{get\+Asset\+By\+Id()}{getAssetById()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Asset , typename Identifier$>$ \\
+Asset \& \mbox{\hyperlink{classAssetHolder}{Asset\+Holder}}$<$ Asset, Identifier $>$\+::get\+Asset\+By\+Id (\begin{DoxyParamCaption}\item[{Identifier}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the asset by identifier. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em id} & The identifier\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The asset by identifier. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAssetHolder_a6e31c8853bf2442e58224f445b2be4bf}\label{classAssetHolder_a6e31c8853bf2442e58224f445b2be4bf}} 
+\index{Asset\+Holder@{Asset\+Holder}!get\+Asset\+By\+Id@{get\+Asset\+By\+Id}}
+\index{get\+Asset\+By\+Id@{get\+Asset\+By\+Id}!Asset\+Holder@{Asset\+Holder}}
+\subsubsection{\texorpdfstring{get\+Asset\+By\+Id()}{getAssetById()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Asset , typename Identifier$>$ \\
+const Asset \& \mbox{\hyperlink{classAssetHolder}{Asset\+Holder}}$<$ Asset, Identifier $>$\+::get\+Asset\+By\+Id (\begin{DoxyParamCaption}\item[{Identifier}]{id }\end{DoxyParamCaption}) const}
 
 
 
@@ -61,7 +82,7 @@ The asset by identifier.
 \index{Asset\+Holder@{Asset\+Holder}!insert\+Asset@{insert\+Asset}}
 \index{insert\+Asset@{insert\+Asset}!Asset\+Holder@{Asset\+Holder}}
 \subsubsection{\texorpdfstring{insert\+Asset()}{insertAsset()}}
-{\footnotesize\ttfamily template$<$typename Asset , typename Identifier $>$ \\
+{\footnotesize\ttfamily template$<$typename Asset, typename Identifier$>$ \\
 void \mbox{\hyperlink{classAssetHolder}{Asset\+Holder}}$<$ Asset, Identifier $>$\+::insert\+Asset (\begin{DoxyParamCaption}\item[{Identifier}]{id,  }\item[{std\+::unique\+\_\+ptr$<$ Asset $>$}]{asset }\end{DoxyParamCaption})}
 
 
@@ -79,7 +100,7 @@ Inserts an asset into the asset map.
 \index{Asset\+Holder@{Asset\+Holder}!load\+Asset\+From\+File@{load\+Asset\+From\+File}}
 \index{load\+Asset\+From\+File@{load\+Asset\+From\+File}!Asset\+Holder@{Asset\+Holder}}
 \subsubsection{\texorpdfstring{load\+Asset\+From\+File()}{loadAssetFromFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$typename Asset , typename Identifier $>$ \\
+{\footnotesize\ttfamily template$<$typename Asset , typename Identifier$>$ \\
 void \mbox{\hyperlink{classAssetHolder}{Asset\+Holder}}$<$ Asset, Identifier $>$\+::load\+Asset\+From\+File (\begin{DoxyParamCaption}\item[{Identifier}]{id,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
 
 
@@ -97,7 +118,7 @@ Loads an asset from file.
 \index{Asset\+Holder@{Asset\+Holder}!load\+Asset\+From\+File@{load\+Asset\+From\+File}}
 \index{load\+Asset\+From\+File@{load\+Asset\+From\+File}!Asset\+Holder@{Asset\+Holder}}
 \subsubsection{\texorpdfstring{load\+Asset\+From\+File()}{loadAssetFromFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Asset , typename Identifier $>$ \\
+{\footnotesize\ttfamily template$<$typename Asset , typename Identifier$>$ \\
 template$<$typename Parameter $>$ \\
 void \mbox{\hyperlink{classAssetHolder}{Asset\+Holder}}$<$ Asset, Identifier $>$\+::load\+Asset\+From\+File (\begin{DoxyParamCaption}\item[{Identifier}]{id,  }\item[{const std\+::string \&}]{filename,  }\item[{const Parameter \&}]{param }\end{DoxyParamCaption})}
 

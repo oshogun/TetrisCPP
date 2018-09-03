@@ -72,7 +72,7 @@ private:
 
 private:
 	Tetris::Piece currentPiece;
-	bool rotate, paused, running;
+	bool rotate, paused, running, gameOver;
 	int dx, totalClearedLines, linesToNextLevel, level;
 	float timer, delay, normaldelay;
 	unsigned score;
@@ -88,5 +88,6 @@ private:
 	sf::Music bgm;
 	sf::Sound bloop, pew;
 	sf::Text scoreboard, paused_text, instructions, pieceCountText;
+
 };
 

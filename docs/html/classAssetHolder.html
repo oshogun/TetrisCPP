@@ -83,9 +83,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4af355fb6909c492ad8a879130bd8897"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classAssetHolder.html#a4af355fb6909c492ad8a879130bd8897">loadAssetFromFile</a> (Identifier id, const std::string &amp;filename, const Parameter &amp;param)</td></tr>
 <tr class="memdesc:a4af355fb6909c492ad8a879130bd8897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads an asset from file.  <a href="#a4af355fb6909c492ad8a879130bd8897">More...</a><br /></td></tr>
 <tr class="separator:a4af355fb6909c492ad8a879130bd8897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb7126c438d6f72a0eec983a98c272a9"><td class="memItemLeft" align="right" valign="top">Asset &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetHolder.html#abb7126c438d6f72a0eec983a98c272a9">getAssetById</a> (Identifier id) const</td></tr>
-<tr class="memdesc:abb7126c438d6f72a0eec983a98c272a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the asset by identifier.  <a href="#abb7126c438d6f72a0eec983a98c272a9">More...</a><br /></td></tr>
-<tr class="separator:abb7126c438d6f72a0eec983a98c272a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d1b14e75170e91a25d4f78a9494b0e"><td class="memItemLeft" align="right" valign="top">Asset &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetHolder.html#a73d1b14e75170e91a25d4f78a9494b0e">getAssetById</a> (Identifier id)</td></tr>
+<tr class="memdesc:a73d1b14e75170e91a25d4f78a9494b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the asset by identifier.  <a href="#a73d1b14e75170e91a25d4f78a9494b0e">More...</a><br /></td></tr>
+<tr class="separator:a73d1b14e75170e91a25d4f78a9494b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e31c8853bf2442e58224f445b2be4bf"><td class="memItemLeft" align="right" valign="top">const Asset &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetHolder.html#a6e31c8853bf2442e58224f445b2be4bf">getAssetById</a> (Identifier id) const</td></tr>
+<tr class="memdesc:a6e31c8853bf2442e58224f445b2be4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the asset by identifier.  <a href="#a6e31c8853bf2442e58224f445b2be4bf">More...</a><br /></td></tr>
+<tr class="separator:a6e31c8853bf2442e58224f445b2be4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d64002db05c07fa914d5fa902a98ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetHolder.html#ae7d64002db05c07fa914d5fa902a98ee">insertAsset</a> (Identifier id, std::unique_ptr&lt; Asset &gt; asset)</td></tr>
 <tr class="memdesc:ae7d64002db05c07fa914d5fa902a98ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts an asset into the asset map.  <a href="#ae7d64002db05c07fa914d5fa902a98ee">More...</a><br /></td></tr>
 <tr class="separator:ae7d64002db05c07fa914d5fa902a98ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,16 +106,45 @@ class AssetHolder&lt; Asset, Identifier &gt;</h3>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="abb7126c438d6f72a0eec983a98c272a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb7126c438d6f72a0eec983a98c272a9">&#9670;&nbsp;</a></span>getAssetById()</h2>
+<a id="a73d1b14e75170e91a25d4f78a9494b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d1b14e75170e91a25d4f78a9494b0e">&#9670;&nbsp;</a></span>getAssetById() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Asset , typename Identifier &gt; </div>
+template&lt;typename Asset , typename Identifier&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Asset&amp; <a class="el" href="classAssetHolder.html">AssetHolder</a>&lt; Asset, Identifier &gt;::getAssetById </td>
+          <td class="memname">Asset &amp; <a class="el" href="classAssetHolder.html">AssetHolder</a>&lt; Asset, Identifier &gt;::getAssetById </td>
+          <td>(</td>
+          <td class="paramtype">Identifier&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the asset by identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>The identifier</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The asset by identifier. </dd></dl>
+
+</div>
+</div>
+<a id="a6e31c8853bf2442e58224f445b2be4bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e31c8853bf2442e58224f445b2be4bf">&#9670;&nbsp;</a></span>getAssetById() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Asset , typename Identifier&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const Asset &amp; <a class="el" href="classAssetHolder.html">AssetHolder</a>&lt; Asset, Identifier &gt;::getAssetById </td>
           <td>(</td>
           <td class="paramtype">Identifier&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
@@ -138,7 +170,7 @@ template&lt;typename Asset , typename Identifier &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Asset , typename Identifier &gt; </div>
+template&lt;typename Asset, typename Identifier&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="classAssetHolder.html">AssetHolder</a>&lt; Asset, Identifier &gt;::insertAsset </td>
@@ -177,7 +209,7 @@ template&lt;typename Asset , typename Identifier &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Asset , typename Identifier &gt; </div>
+template&lt;typename Asset , typename Identifier&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="classAssetHolder.html">AssetHolder</a>&lt; Asset, Identifier &gt;::loadAssetFromFile </td>
@@ -216,7 +248,7 @@ template&lt;typename Asset , typename Identifier &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Asset , typename Identifier &gt; </div>
+template&lt;typename Asset , typename Identifier&gt; </div>
 <div class="memtemplate">
 template&lt;typename Parameter &gt; </div>
       <table class="memname">

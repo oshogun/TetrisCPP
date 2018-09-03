@@ -18,9 +18,7 @@ namespace Tetris {
 	public:
 		/**
 		 * @brief      Constructs the board
-		 *
-		 * @param[in]  M     the number of lines
-		 * @param[in]  N     the number of collumns
+	
 		 */
 		Board();
 		/**
@@ -28,7 +26,7 @@ namespace Tetris {
 		 *
 		 * @return     The field (2-dimensional vector of int).
 		 */
-		std::array<std::array<int, 10>,20> & getField();
+		std::array<std::array<int, 10>,21> & getField();
 
 		/**
 		 * @brief      Gets the number of lines
@@ -47,7 +45,7 @@ namespace Tetris {
 	private:
 		int M = 20;
 		int N = 10;
-		std::array<std::array<int,10>,20> field;
+		std::array<std::array<int,10>,21> field;
 	};
 
 	/**

@@ -1,5 +1,6 @@
 #include "Tetris.h"
 #include "Game.h"
+#include "MusicHandler.h"
 #include <iostream>
 
 int main()

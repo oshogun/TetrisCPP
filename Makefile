@@ -6,6 +6,9 @@ INCLUDEDIR=include
 all:
 	$(CC) $(SRCDIR)/*.cpp -O3 -I$(INCLUDEDIR) $(LIBS) -o Tetris -std=c++17
 
+docs:
+	doxygen
+
 clean:
 	rm Tetris
 

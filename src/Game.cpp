@@ -6,7 +6,7 @@ Game::Game():
 	timer(0.f), delay(0.8f), normaldelay(0.8f),
 	currentPiece(1, 1),
 	score(0),
-	paused(false),
+	paused(false), gameOver(false),
 	level(1),
 	pieceCount({0}),
 	totalClearedLines(0),
@@ -37,6 +37,7 @@ void Game::resetGame()
 	a = {{0}};
 	b = {{0}};
 	board = Tetris::Board();
+	gameOver = false;
 	rotate = false;
 	dx = 0;
 	timer = 0;
@@ -46,6 +47,7 @@ void Game::resetGame()
 	level = 1;
 	totalClearedLines = 0;
 	linesToNextLevel = 0;
+	pieceCount = {{0}};
 
 	generatePiece();
 	run();
@@ -53,7 +55,7 @@ void Game::resetGame()
 void Game::setupMusic()
 {	
 
-	bgm.setLoopPoints(sf::Music::Span(sf::seconds(3.058), sf::seconds(117.356)));
+	bgm.setLoopPoints(sf::Music::Span<sf::Time>(sf::seconds(3.058), sf::seconds(117.356)));
 	bgm.setLoop(true);
 	bgm.setVolume(25);
 	bgm.play();
@@ -93,7 +95,7 @@ void Game::run()
 
 		processEvents();
 
-		if(!paused)
+		if(!paused && !gameOver)
 			update();
 		dx = 0; 
 		rotate = false; 
@@ -198,15 +200,15 @@ bool Game::check()
 	auto field = board.getField();
 	int M = board.getLines();
 	int N = board.getCollumns();
-	for (int i=0;i<4;i++)
+	for (int i=0;i<4;i++) {
 	  if (a.at(i).x<0 || a.at(i).x>=N || a.at(i).y>=M) {
 	      return 0;
 	  }
 
       else if (field.at(a.at(i).y).at(a.at(i).x)) {       	  
       	  return 0;
-      }
-
+      } 
+  	}
    return 1;
 }
 

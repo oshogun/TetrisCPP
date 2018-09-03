@@ -7,7 +7,7 @@ namespace Tetris {
 		field = {{0}};
 	}
 
-	std::array<std::array<int,10>, 20> & Board::getField() 
+	std::array<std::array<int,10>, 21> & Board::getField() 
 	{
 		return field;
 	}

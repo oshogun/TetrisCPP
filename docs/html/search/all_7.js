@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['setupimages',['setupImages',['../classGame.html#aa1e67274c523f6326266d9225bc38d19',1,'Game']]],
-  ['setupmusic',['setupMusic',['../classGame.html#a08aef1d998c3a15364945172714dfcb7',1,'Game']]],
-  ['setupsounds',['setupSounds',['../classGame.html#adcdd5b882f94577b61704e2ae7aae8b2',1,'Game']]]
+  ['removemusic',['removeMusic',['../classMusicHandler.html#abf4eb768fd3e6a6d03ec5d764daa2c08',1,'MusicHandler']]],
+  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
 ];

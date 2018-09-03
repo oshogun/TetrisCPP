@@ -1,0 +1,161 @@
+\hypertarget{classMusicHandler}{}\section{Music\+Handler Class Reference}
+\label{classMusicHandler}\index{Music\+Handler@{Music\+Handler}}
+
+
+Class for the Music Handler.  
+
+
+
+
+{\ttfamily \#include $<$Music\+Handler.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMusicHandler_ad31f5fdc573d744bd3093b626e2d26e8}{insert\+Music}} (const std\+::string \&identifier, const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Open a music file and insert it into music database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMusicHandler_abf4eb768fd3e6a6d03ec5d764daa2c08}{remove\+Music}} (const std\+::string \&identifier)
+\begin{DoxyCompactList}\small\item\em Removes a music from the music database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMusicHandler_ab86705118b5abc254dcc79156a8c04b3}{set\+Current\+Music}} (const std\+::string \&identifier)
+\begin{DoxyCompactList}\small\item\em Sets the current music to handle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMusicHandler_af76b987312116ddb40d5ae7c7bbb62d9}{set\+Volume}} (float volume)
+\begin{DoxyCompactList}\small\item\em Sets the volume of the current music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMusicHandler_ae0c03e2b112d376e55c61f9d531dc389}{set\+Loop\+Points}} (float loop\+Start, float loop\+End)
+\begin{DoxyCompactList}\small\item\em Sets the loop points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMusicHandler_a9fe6bb5dfce663a969309dd50893ce55}\label{classMusicHandler_a9fe6bb5dfce663a969309dd50893ce55}} 
+void \mbox{\hyperlink{classMusicHandler_a9fe6bb5dfce663a969309dd50893ce55}{play}} ()
+\begin{DoxyCompactList}\small\item\em Begin playback of music. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMusicHandler_aab1e90be1e7e585449091b3a6e1ad3bf}\label{classMusicHandler_aab1e90be1e7e585449091b3a6e1ad3bf}} 
+void \mbox{\hyperlink{classMusicHandler_aab1e90be1e7e585449091b3a6e1ad3bf}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stop playback of music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMusicHandler_a2c7a5bcc621e5912582ddf4efbe4d5a7}{set\+Loop}} (bool loop)
+\begin{DoxyCompactList}\small\item\em Sets whether or not to loop the music. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMusicHandler_a426645f2f04b944270504c99703a0d16}\label{classMusicHandler_a426645f2f04b944270504c99703a0d16}} 
+{\bfseries insert\+Music} (const std\+::string identifier, const std\+::string filename)
+\item 
+\mbox{\Hypertarget{classMusicHandler_a7ee062f4bda087e4f2b8e72e72644cc0}\label{classMusicHandler_a7ee062f4bda087e4f2b8e72e72644cc0}} 
+{\bfseries remove\+Music} (const std\+::string identifier)
+\item 
+\mbox{\Hypertarget{classMusicHandler_acc2719ebc7b0a4f84ba787c83ea7b4fb}\label{classMusicHandler_acc2719ebc7b0a4f84ba787c83ea7b4fb}} 
+{\bfseries set\+Current\+Music} (const std\+::string identifier)
+\item 
+\mbox{\Hypertarget{classMusicHandler_a96614ccefe6082c95b66e192b79b6bc9}\label{classMusicHandler_a96614ccefe6082c95b66e192b79b6bc9}} 
+{\bfseries set\+Volume} (float volume)
+\item 
+\mbox{\Hypertarget{classMusicHandler_a3a89fd8c539db30895a6cad58ebb6c4a}\label{classMusicHandler_a3a89fd8c539db30895a6cad58ebb6c4a}} 
+{\bfseries set\+Loop} (float loop\+Start, float loop\+End)
+\item 
+\mbox{\Hypertarget{classMusicHandler_a12d3cbe75ece24d2420bb739883c3c82}\label{classMusicHandler_a12d3cbe75ece24d2420bb739883c3c82}} 
+{\bfseries play} ()
+\item 
+\mbox{\Hypertarget{classMusicHandler_abec4fe47f9941eabf11c77ce122cb437}\label{classMusicHandler_abec4fe47f9941eabf11c77ce122cb437}} 
+{\bfseries stop} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for the Music Handler. 
+
+This handler contains a wrapper for the S\+F\+ML Music interface, which allows for various music files to be conveniently managed. You can easily open, set loop points, and switch between music without having to keep track of all your sf\+::\+Music objects. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMusicHandler_ad31f5fdc573d744bd3093b626e2d26e8}\label{classMusicHandler_ad31f5fdc573d744bd3093b626e2d26e8}} 
+\index{Music\+Handler@{Music\+Handler}!insert\+Music@{insert\+Music}}
+\index{insert\+Music@{insert\+Music}!Music\+Handler@{Music\+Handler}}
+\subsubsection{\texorpdfstring{insert\+Music()}{insertMusic()}}
+{\footnotesize\ttfamily void Music\+Handler\+::insert\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{identifier,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Open a music file and insert it into music database. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em identifier} & The identifier of the music \\
+\hline
+\mbox{\tt in}  & {\em filename} & The filename to open \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMusicHandler_abf4eb768fd3e6a6d03ec5d764daa2c08}\label{classMusicHandler_abf4eb768fd3e6a6d03ec5d764daa2c08}} 
+\index{Music\+Handler@{Music\+Handler}!remove\+Music@{remove\+Music}}
+\index{remove\+Music@{remove\+Music}!Music\+Handler@{Music\+Handler}}
+\subsubsection{\texorpdfstring{remove\+Music()}{removeMusic()}}
+{\footnotesize\ttfamily void Music\+Handler\+::remove\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{identifier }\end{DoxyParamCaption})}
+
+
+
+Removes a music from the music database. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em identifier} & The identifier of the music \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMusicHandler_ab86705118b5abc254dcc79156a8c04b3}\label{classMusicHandler_ab86705118b5abc254dcc79156a8c04b3}} 
+\index{Music\+Handler@{Music\+Handler}!set\+Current\+Music@{set\+Current\+Music}}
+\index{set\+Current\+Music@{set\+Current\+Music}!Music\+Handler@{Music\+Handler}}
+\subsubsection{\texorpdfstring{set\+Current\+Music()}{setCurrentMusic()}}
+{\footnotesize\ttfamily void Music\+Handler\+::set\+Current\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{identifier }\end{DoxyParamCaption})}
+
+
+
+Sets the current music to handle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em identifier} & The identifier of the selected music \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMusicHandler_a2c7a5bcc621e5912582ddf4efbe4d5a7}\label{classMusicHandler_a2c7a5bcc621e5912582ddf4efbe4d5a7}} 
+\index{Music\+Handler@{Music\+Handler}!set\+Loop@{set\+Loop}}
+\index{set\+Loop@{set\+Loop}!Music\+Handler@{Music\+Handler}}
+\subsubsection{\texorpdfstring{set\+Loop()}{setLoop()}}
+{\footnotesize\ttfamily void Music\+Handler\+::set\+Loop (\begin{DoxyParamCaption}\item[{bool}]{loop }\end{DoxyParamCaption})}
+
+
+
+Sets whether or not to loop the music. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em loop} & wanna loop? \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMusicHandler_ae0c03e2b112d376e55c61f9d531dc389}\label{classMusicHandler_ae0c03e2b112d376e55c61f9d531dc389}} 
+\index{Music\+Handler@{Music\+Handler}!set\+Loop\+Points@{set\+Loop\+Points}}
+\index{set\+Loop\+Points@{set\+Loop\+Points}!Music\+Handler@{Music\+Handler}}
+\subsubsection{\texorpdfstring{set\+Loop\+Points()}{setLoopPoints()}}
+{\footnotesize\ttfamily void Music\+Handler\+::set\+Loop\+Points (\begin{DoxyParamCaption}\item[{float}]{loop\+Start,  }\item[{float}]{loop\+End }\end{DoxyParamCaption})}
+
+
+
+Sets the loop points. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em loop\+Start} & The loop start, in seconds. \\
+\hline
+\mbox{\tt in}  & {\em loop\+End} & The loop end (not duration, the actual end time in seconds) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMusicHandler_af76b987312116ddb40d5ae7c7bbb62d9}\label{classMusicHandler_af76b987312116ddb40d5ae7c7bbb62d9}} 
+\index{Music\+Handler@{Music\+Handler}!set\+Volume@{set\+Volume}}
+\index{set\+Volume@{set\+Volume}!Music\+Handler@{Music\+Handler}}
+\subsubsection{\texorpdfstring{set\+Volume()}{setVolume()}}
+{\footnotesize\ttfamily void Music\+Handler\+::set\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume }\end{DoxyParamCaption})}
+
+
+
+Sets the volume of the current music. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em volume} & The volume \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Music\+Handler.\+h\item 
+src/Music\+Handler.\+cpp\end{DoxyCompactItemize}

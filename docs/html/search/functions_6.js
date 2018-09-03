@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['setupimages',['setupImages',['../classGame.html#aa1e67274c523f6326266d9225bc38d19',1,'Game']]],
-  ['setupmusic',['setupMusic',['../classGame.html#a08aef1d998c3a15364945172714dfcb7',1,'Game']]],
-  ['setupsounds',['setupSounds',['../classGame.html#adcdd5b882f94577b61704e2ae7aae8b2',1,'Game']]]
+  ['setcurrentmusic',['setCurrentMusic',['../classMusicHandler.html#ab86705118b5abc254dcc79156a8c04b3',1,'MusicHandler']]],
+  ['setloop',['setLoop',['../classMusicHandler.html#a2c7a5bcc621e5912582ddf4efbe4d5a7',1,'MusicHandler']]],
+  ['setlooppoints',['setLoopPoints',['../classMusicHandler.html#ae0c03e2b112d376e55c61f9d531dc389',1,'MusicHandler']]],
+  ['setvolume',['setVolume',['../classMusicHandler.html#af76b987312116ddb40d5ae7c7bbb62d9',1,'MusicHandler']]],
+  ['stop',['stop',['../classMusicHandler.html#aab1e90be1e7e585449091b3a6e1ad3bf',1,'MusicHandler']]]
 ];
