@@ -3,22 +3,14 @@
 Game::Game():
 	currentPiece(1,1),	
 	window(sf::VideoMode(640,480), "Tetris C++17 (Name Subject to Change)",sf::Style::Close) 
-	{	
-		loadAssets();
-		setupMusic();
-		setupSounds();
-		resetGame();	
-	}
-
-void Game::loadAssets()
-{
-	assetHolders.fontHolder.loadAssetFromFile(font_opensans_bold, "fonts/OpenSans-Bold.ttf");	
-	assetHolders.soundBufferHolder.loadAssetFromFile(soundBuffer_pew_buffer, "soundfx/pew.wav");	
-	assetHolders.soundBufferHolder.loadAssetFromFile(soundBuffer_bloop_buffer, "soundfx/beep-02.wav");	
-	assetHolders.textureHolder.loadAssetFromFile(background_texture, "images/background.png");
-	assetHolders.textureHolder.loadAssetFromFile(tileset_texture, "images/tiles.png");	
-	assetHolders.textureHolder.loadAssetFromFile(frame_texture, "images/frame.png");		
+{	
+	assetHolders.loadAssets();
+	setupMusic();
+	setupSounds();
+	resetGame();	
 }
+
+
 
 void Game::resetGame()
 {
@@ -154,7 +146,9 @@ void Game::rotatePiece()
 {
 	if (gameVars.rotate && currentPiece.getType() != 6) {
 		Tetris::Point p = a.at(1); // center of rotation
-
+		if (currentPiece.getType() == 0) {
+			p = a.at(2);
+		}
 		for (int i = 0; i < 4; i++) 
 		{
 			int x = a.at(i).y-p.y;

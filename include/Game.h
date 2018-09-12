@@ -1,13 +1,10 @@
 #pragma once 
 
 #include "Tetris.h"
-#include "AssetHolder.hpp"
-#include "Assets.h"
 #include "MusicHandler.h"
 #include "GameVariables.h"
 #include <sstream>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+
 #include <ctime>
 #include <cmath>
 #include <cstdlib>
@@ -65,7 +62,6 @@ private:
 	void resetGame();
 
 	// Functions called by the constructor
-	void loadAssets();
 	void setupMusic();
 	void setupSounds();
 	void setupImages();
@@ -78,7 +74,6 @@ private:
 	std::array<Tetris::Point, 4>a, b;
 	std::array<int,7> pieceCount;
 	GameVariables gameVars;
-
 	AssetBank assetHolders;	
 	
 	sf::RenderWindow window;
