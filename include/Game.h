@@ -4,6 +4,7 @@
 #include "AssetHolder.hpp"
 #include "Assets.h"
 #include "MusicHandler.h"
+#include "GameVariables.h"
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -73,20 +74,14 @@ private:
 
 private:
 	Tetris::Piece currentPiece;
-	bool rotate, paused, running, gameOver;
-	int dx, totalClearedLines, linesToNextLevel, level;
-	float timer, delay, normaldelay;
-	unsigned score;
 	Tetris::Board board;
 	std::array<Tetris::Point, 4>a, b;
 	std::array<int,7> pieceCount;
+	GameVariables gameVars;
 
-	AssetHolder<sf::Texture, Assets> textureHolder;
-	AssetHolder<sf::Font, Assets> fontHolder;
-	AssetHolder<sf::SoundBuffer, Assets> soundBufferHolder;
+	AssetBank assetHolders;	
 	
 	sf::RenderWindow window;
-	sf::Music bgm;
 	MusicHandler musicHandler;
 	sf::Sound bloop, pew;
 	sf::Text scoreboard, paused_text, instructions, pieceCountText;

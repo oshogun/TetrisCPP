@@ -1,33 +1,23 @@
 #include "Game.h"
 
-Game::Game():	
-	rotate(false),
-	dx(0),
-	timer(0.f), delay(0.8f), normaldelay(0.8f),
-	currentPiece(1, 1),
-	score(0),
-	paused(false), gameOver(false),
-	level(1),
-	pieceCount({0}),
-	totalClearedLines(0),
-	linesToNextLevel(0),
+Game::Game():
+	currentPiece(1,1),	
 	window(sf::VideoMode(640,480), "Tetris C++17 (Name Subject to Change)",sf::Style::Close) 
 	{	
 		loadAssets();
 		setupMusic();
 		setupSounds();
-		generatePiece();		
+		resetGame();	
 	}
 
 void Game::loadAssets()
 {
-	fontHolder.loadAssetFromFile(font_opensans_bold, "fonts/OpenSans-Bold.ttf");	
-	
-	soundBufferHolder.loadAssetFromFile(soundBuffer_pew_buffer, "soundfx/pew.wav");	
-	soundBufferHolder.loadAssetFromFile(soundBuffer_bloop_buffer, "soundfx/beep-02.wav");	
-	textureHolder.loadAssetFromFile(background_texture, "images/background.png");
-	textureHolder.loadAssetFromFile(tileset_texture, "images/tiles.png");	
-	textureHolder.loadAssetFromFile(frame_texture, "images/frame.png");		
+	assetHolders.fontHolder.loadAssetFromFile(font_opensans_bold, "fonts/OpenSans-Bold.ttf");	
+	assetHolders.soundBufferHolder.loadAssetFromFile(soundBuffer_pew_buffer, "soundfx/pew.wav");	
+	assetHolders.soundBufferHolder.loadAssetFromFile(soundBuffer_bloop_buffer, "soundfx/beep-02.wav");	
+	assetHolders.textureHolder.loadAssetFromFile(background_texture, "images/background.png");
+	assetHolders.textureHolder.loadAssetFromFile(tileset_texture, "images/tiles.png");	
+	assetHolders.textureHolder.loadAssetFromFile(frame_texture, "images/frame.png");		
 }
 
 void Game::resetGame()
@@ -35,16 +25,17 @@ void Game::resetGame()
 	a = {{0}};
 	b = {{0}};
 	board = Tetris::Board();
-	gameOver = false;
-	rotate = false;
-	dx = 0;
-	timer = 0;
-	delay = 0.8;
-	normaldelay = 0.8;
-	score = 0;
-	level = 1;
-	totalClearedLines = 0;
-	linesToNextLevel = 0;
+	gameVars.gameOver = false;
+	gameVars.rotate = false;
+	gameVars.paused = false;
+	gameVars.dx = 0;
+	gameVars.timer = 0;
+	gameVars.delay = 0.8;
+	gameVars.normaldelay = 0.8;
+	gameVars.score = 0;
+	gameVars.level = 1;
+	gameVars.totalClearedLines = 0;
+	gameVars.linesToNextLevel = 0;
 	pieceCount = {{0}};
 
 	generatePiece();
@@ -62,9 +53,13 @@ void Game::setupMusic()
 
 void Game::setupSounds()
 {
-	bloop.setBuffer(soundBufferHolder.getAssetById(soundBuffer_bloop_buffer));
+	bloop.setBuffer(assetHolders.
+						soundBufferHolder.			
+							getAssetById(soundBuffer_bloop_buffer));
 	bloop.setVolume(50);
-	pew.setBuffer(soundBufferHolder.getAssetById(soundBuffer_pew_buffer));
+	pew.setBuffer(assetHolders.
+					soundBufferHolder.
+						getAssetById(soundBuffer_pew_buffer));
 	pew.setVolume(30);
 }
 
@@ -85,20 +80,20 @@ void Game::run()
 {
 	
 	sf::Clock clock;	
-	running = true;
-	while(window.isOpen() && running) {
+	gameVars.running = true;
+	while(window.isOpen() && gameVars.running) {
 		float time = clock.getElapsedTime().asSeconds();
 		clock.restart();
-		timer += time;
+		gameVars.timer += time;
 		
 
 		processEvents();
 
-		if(!paused && !gameOver)
+		if(!gameVars.paused && !gameVars.gameOver)
 			update();
-		dx = 0; 
-		rotate = false; 
-		delay = normaldelay;
+		gameVars.dx = 0; 
+		gameVars.rotate = false; 
+		gameVars.delay = gameVars.normaldelay;
 		render();
 	}
 }
@@ -113,20 +108,20 @@ void Game::processEvents()
 		if (event.type == sf::Event::KeyPressed) {
 			bloop.play();
 			if(event.key.code == sf::Keyboard::Up)
-				rotate = true;
+				gameVars.rotate = true;
 			else if (event.key.code == sf::Keyboard::Left)
-				dx = -1; 
+				gameVars.dx = -1; 
 			else if (event.key.code == sf::Keyboard::Right)
-				dx = 1;
+				gameVars.dx = 1;
 			else if (event.key.code == sf::Keyboard::Escape)
-				paused = !paused;
+				gameVars.paused = !gameVars.paused;
 			else if (event.key.code == sf::Keyboard::R) {
-				running = false;
+				gameVars.running = false;
 				resetGame();
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			delay = 0.0001;
+			gameVars.delay = 0.0001;
 		}
 			
 	}
@@ -135,7 +130,7 @@ void Game::processEvents()
 void Game::update()
 {
 	move();
-	if (rotate && currentPiece.getType() != 6);
+	if (gameVars.rotate && currentPiece.getType() != 6);
 		rotatePiece();
 	tick();
 	checkLines();
@@ -145,7 +140,7 @@ void Game::move()
 {
 	for (int i = 0; i < 4; i++) {
 		b.at(i) = a.at(i);
-		a.at(i).x += dx;
+		a.at(i).x += gameVars.dx;
 	}
 
 	if (!check()) {
@@ -157,7 +152,7 @@ void Game::move()
 
 void Game::rotatePiece()
 {
-	if (rotate && currentPiece.getType() != 6) {
+	if (gameVars.rotate && currentPiece.getType() != 6) {
 		Tetris::Point p = a.at(1); // center of rotation
 
 		for (int i = 0; i < 4; i++) 
@@ -177,7 +172,7 @@ void Game::rotatePiece()
 
 void Game::tick()
 {
-	if (timer > delay) {
+	if (gameVars.timer > gameVars.delay) {
 		for (int i = 0; i < 4; i++) {
 			b.at(i) = a.at(i);
 			a.at(i).y += 1;
@@ -187,10 +182,10 @@ void Game::tick()
 				board.getField().at(b.at(i).y).at(b.at(i).x) = currentPiece.getColor();
 
 			}
-			score += 1;	
+			gameVars.score += 1;	
 			generatePiece();
 		}
-		timer = 0;
+		gameVars.timer = 0;
 	}
 }
 
@@ -239,9 +234,9 @@ void Game::render()
 	int N = board.getCollumns();
 	auto field = board.getField();
 
-	sf::Sprite s(textureHolder.getAssetById(tileset_texture));
-	sf::Sprite background(textureHolder.getAssetById(background_texture));
-	sf::Sprite frame(textureHolder.getAssetById(frame_texture));
+	sf::Sprite s(assetHolders.textureHolder.getAssetById(tileset_texture));
+	sf::Sprite background(assetHolders.textureHolder.getAssetById(background_texture));
+	sf::Sprite frame(assetHolders.textureHolder.getAssetById(frame_texture));
 
 	window.clear();
 	window.draw(background);
@@ -268,7 +263,7 @@ void Game::render()
 	window.draw(scoreboard);
 	window.draw(pieceCountText);
 	window.draw(frame);
-	if(paused)
+	if(gameVars.paused)
 		window.draw(paused_text);
 
 	window.display();
@@ -284,12 +279,12 @@ void Game::processText()
 void Game::processScoreboard()
 {
 	std::stringstream ss;
-	scoreboard.setFont(fontHolder.getAssetById(font_opensans_bold));
-	ss << "Score: " << score << "\n\n";
-	ss << "Cleared Lines: " << totalClearedLines << "\n\n";
-	ss << "Level: " << level << "\n\n";
-	ss << "Cleared lines this level: " << linesToNextLevel << "\n\n";
-	ss << "Current Delay: " << normaldelay << "s\n\n";
+	scoreboard.setFont(assetHolders.fontHolder.getAssetById(font_opensans_bold));
+	ss << "Score: " << gameVars.score << "\n\n";
+	ss << "Cleared Lines: " << gameVars.totalClearedLines << "\n\n";
+	ss << "Level: " << gameVars.level << "\n\n";
+	ss << "Cleared lines this level: " << gameVars.linesToNextLevel << "\n\n";
+	ss << "Current Delay: " << gameVars.normaldelay << "s\n\n";
 	scoreboard.setString(ss.str());
 	scoreboard.setCharacterSize(18);
 	scoreboard.setPosition(379, 22);
@@ -300,7 +295,7 @@ void Game::processScoreboard()
 
 void Game::processPausedText()
 {
-	paused_text.setFont(fontHolder.getAssetById(font_opensans_bold));
+	paused_text.setFont(assetHolders.fontHolder.getAssetById(font_opensans_bold));
 	paused_text.setString("PAUSED");
 	paused_text.setCharacterSize(50);
 	paused_text.setPosition(640 / 4, 450 / 2);
@@ -321,7 +316,7 @@ void Game::processPieceCountText()
 	ss << "L pieces: " << pieceCount.at(4) << "\n";
 	ss << "J pieces: " << pieceCount.at(5) << "\n";
 	ss << "Square bois: " << pieceCount.at(6) << "\n"; 
-	pieceCountText.setFont(fontHolder.getAssetById(font_opensans_bold));
+	pieceCountText.setFont(assetHolders.fontHolder.getAssetById(font_opensans_bold));
 	pieceCountText.setString(ss.str());
 	pieceCountText.setCharacterSize(15);
 	pieceCountText.setPosition(379, 247);
@@ -350,36 +345,36 @@ void Game::checkScores()
 		}
 		if (count == N) {
 			linesCleared++;
-			totalClearedLines++;
-			linesToNextLevel++;
+			gameVars.totalClearedLines++;
+			gameVars.linesToNextLevel++;
 		} 
 		count = 0;
 	}	
 
 
-	if (linesToNextLevel >= 10) {
-		level++;
-		linesToNextLevel -= 10;
-		if (normaldelay > 0.05) {
-			normaldelay -= 0.05;
+	if (gameVars.linesToNextLevel >= 10) {
+		gameVars.level++;
+		gameVars.linesToNextLevel -= 10;
+		if (gameVars.normaldelay > 0.05) {
+			gameVars.normaldelay -= 0.05;
 		}
 	}
 	if (linesCleared != 0) {
 		switch(linesCleared) {
 			case 1:
-				score += 40 * (level + 1);
+				gameVars.score += 40 * (gameVars.level + 1);
 				pew.setVolume(1);
 				break;
 			case 2:
-				score += 100 * (level + 1);
+				gameVars.score += 100 * (gameVars.level + 1);
 				pew.setVolume(10);
 				break;
 			case 3:
-				score += 300 * (level + 1);
+				gameVars.score += 300 * (gameVars.level + 1);
 				pew.setVolume(20);
 				break; 
 			case 4:
-				score += 1200 * (level + 1);
+				gameVars.score += 1200 * (gameVars.level + 1);
 				pew.setVolume(30);
 		}
 		pew.play();
