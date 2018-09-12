@@ -22,9 +22,7 @@ Game::Game():
 void Game::loadAssets()
 {
 	fontHolder.loadAssetFromFile(font_opensans_bold, "fonts/OpenSans-Bold.ttf");	
-	if (!bgm.openFromFile("music/borb.wav")) {
-		throw std::runtime_error("Failed to load music/borb.wav");
-	}
+	
 	soundBufferHolder.loadAssetFromFile(soundBuffer_pew_buffer, "soundfx/pew.wav");	
 	soundBufferHolder.loadAssetFromFile(soundBuffer_bloop_buffer, "soundfx/beep-02.wav");	
 	textureHolder.loadAssetFromFile(background_texture, "images/background.png");
@@ -54,11 +52,12 @@ void Game::resetGame()
 }
 void Game::setupMusic()
 {	
-
-	bgm.setLoopPoints(sf::Music::Span<sf::Time>(sf::seconds(3.058), sf::seconds(117.356)));
-	bgm.setLoop(true);
-	bgm.setVolume(25);
-	bgm.play();
+	musicHandler.insertMusic("borb", "music/borb.wav"); 
+	musicHandler.setCurrentMusic("borb");
+	musicHandler.setLoopPoints(3.058, 120.414);
+	musicHandler.setLoop(true);
+	musicHandler.setVolume(25);
+	musicHandler.play();
 }
 
 void Game::setupSounds()

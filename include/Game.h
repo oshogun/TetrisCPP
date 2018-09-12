@@ -3,6 +3,7 @@
 #include "Tetris.h"
 #include "AssetHolder.hpp"
 #include "Assets.h"
+#include "MusicHandler.h"
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -86,6 +87,7 @@ private:
 	
 	sf::RenderWindow window;
 	sf::Music bgm;
+	MusicHandler musicHandler;
 	sf::Sound bloop, pew;
 	sf::Text scoreboard, paused_text, instructions, pieceCountText;
 
