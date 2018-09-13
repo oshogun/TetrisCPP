@@ -9,6 +9,8 @@ struct GameVariables {
 	int dx, totalClearedLines, linesToNextLevel, level;
 	float timer, delay, normaldelay;
 	unsigned score;
+
+	void resetGameVars();
 };
 
 struct AssetBank {

@@ -17,19 +17,8 @@ void Game::resetGame()
 	a = {{0}};
 	b = {{0}};
 	board = Tetris::Board();
-	gameVars.gameOver = false;
-	gameVars.rotate = false;
-	gameVars.paused = false;
-	gameVars.dx = 0;
-	gameVars.timer = 0;
-	gameVars.delay = 0.8;
-	gameVars.normaldelay = 0.8;
-	gameVars.score = 0;
-	gameVars.level = 1;
-	gameVars.totalClearedLines = 0;
-	gameVars.linesToNextLevel = 0;
+	gameVars.resetGameVars();
 	pieceCount = {{0}};
-
 	generatePiece();
 	run();
 }
