@@ -3,6 +3,7 @@
 #include "Tetris.h"
 #include "MusicHandler.h"
 #include "GameVariables.h"
+#include "GameSounds.h"
 #include <sstream>
 
 #include <ctime>
@@ -63,7 +64,6 @@ private:
 
 	// Functions called by the constructor
 	void setupMusic();
-	void setupSounds();
 	void setupImages();
 
 	
@@ -75,10 +75,9 @@ private:
 	std::array<int,7> pieceCount;
 	GameVariables gameVars;
 	AssetBank assetHolders;	
-	
 	sf::RenderWindow window;
 	MusicHandler musicHandler;
-	sf::Sound bloop, pew;
+	GameSounds sfx;
 	sf::Text scoreboard, paused_text, instructions, pieceCountText;
 
 };

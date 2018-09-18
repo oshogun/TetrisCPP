@@ -6,7 +6,7 @@ Game::Game():
 {	
 	assetHolders.loadAssets();
 	setupMusic();
-	setupSounds();
+	sfx.setupSounds();
 	resetGame();	
 }
 
@@ -31,19 +31,6 @@ void Game::setupMusic()
 	musicHandler.setVolume(25);
 	musicHandler.play();
 }
-
-void Game::setupSounds()
-{
-	bloop.setBuffer(assetHolders.
-						soundBufferHolder.			
-							getAssetById(soundBuffer_bloop_buffer));
-	bloop.setVolume(50);
-	pew.setBuffer(assetHolders.
-					soundBufferHolder.
-						getAssetById(soundBuffer_pew_buffer));
-	pew.setVolume(30);
-}
-
 
 void Game::generatePiece()
 {
@@ -87,19 +74,24 @@ void Game::processEvents()
 			window.close();
 		}
 		if (event.type == sf::Event::KeyPressed) {
-			bloop.play();
-			if(event.key.code == sf::Keyboard::Up)
-				gameVars.rotate = true;
-			else if (event.key.code == sf::Keyboard::Left)
-				gameVars.dx = -1; 
-			else if (event.key.code == sf::Keyboard::Right)
-				gameVars.dx = 1;
-			else if (event.key.code == sf::Keyboard::Escape)
-				gameVars.paused = !gameVars.paused;
-			else if (event.key.code == sf::Keyboard::R) {
-				gameVars.running = false;
-				resetGame();
-			}
+			sfx.bloop();
+			switch(event.key.code) {
+				case sf::Keyboard::Up:
+					gameVars.rotate = true;
+					break;
+				case sf::Keyboard::Left:
+					gameVars.dx = -1; 
+					break;
+				case sf::Keyboard::Right:
+					gameVars.dx = 1;
+					break;
+				case sf::Keyboard::Escape:
+					gameVars.paused = !gameVars.paused;
+					break;
+				case sf::Keyboard::R:
+					gameVars.running = false;
+					resetGame();
+			}						
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 			gameVars.delay = 0.0001;
@@ -346,21 +338,21 @@ void Game::checkScores()
 		switch(linesCleared) {
 			case 1:
 				gameVars.score += 40 * (gameVars.level + 1);
-				pew.setVolume(1);
+				sfx.setPewVolume(1);
 				break;
 			case 2:
 				gameVars.score += 100 * (gameVars.level + 1);
-				pew.setVolume(10);
+				sfx.setPewVolume(10);
 				break;
 			case 3:
 				gameVars.score += 300 * (gameVars.level + 1);
-				pew.setVolume(20);
+				sfx.setPewVolume(20);
 				break; 
 			case 4:
 				gameVars.score += 1200 * (gameVars.level + 1);
-				pew.setVolume(30);
+				sfx.setPewVolume(30);
 		}
-		pew.play();
+		sfx.pew();
 		std::cout << "kek\n";
 	}
 	if (linesCleared == 4) {
